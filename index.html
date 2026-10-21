@@ -409,5 +409,462 @@
   </script>
 
 </body>
-          </html>
-          
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090d20">
+<title>Neon Game Zone | Online Games</title>
+<style>
+:root {
+  --bg:#080b18; --panel:#151b32; --cyan:#61f5ff;
+  --purple:#a78bfa; --text:#f5f7ff; --muted:#b8c2e2;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0; font-family:Arial,sans-serif; color:var(--text);
+  background:radial-gradient(ellipse at top,#25265b,transparent 55%),
+             linear-gradient(140deg,#080b18,#14102b,#071827);
+  min-height:100vh;
+}
+header {
+  padding:22px 14px; text-align:center;
+  border-bottom:1px solid #ffffff20;
+}
+.logo { font-size:clamp(23px,5vw,34px); font-weight:900;
+  color:var(--cyan); text-shadow:0 0 18px #00d9ff60; }
+header p { color:var(--muted); margin-bottom:0; }
+main { width:min(1050px,94%); margin:30px auto; }
+.hero { text-align:center; margin-bottom:30px; }
+.hero h1 { font-size:clamp(30px,6vw,49px); margin-bottom:10px; }
+.hero h1 span { color:var(--purple); }
+.hero p { color:var(--muted); line-height:1.7; }
+.pill { display:inline-block; background:#202647; color:var(--cyan);
+  padding:8px 14px; border-radius:30px; font-size:13px; }
+.stats { display:flex; gap:12px; justify-content:center; margin:22px 0; }
+.stat { background:#171d36; border:1px solid #ffffff15;
+  padding:12px 20px; border-radius:14px; text-align:center; min-width:115px; }
+.stat small { display:block; color:var(--muted); margin-bottom:7px; }
+.stat strong { color:var(--cyan); font-size:23px; }
+h2 { margin-top:0; }
+.game-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.game-card {
+  background:#151b32eF; border:1px solid #ffffff18; border-radius:18px;
+  padding:19px 12px; text-align:center; transition:.2s;
+}
+.game-card:hover { transform:translateY(-4px); border-color:var(--cyan); }
+.game-card .emoji { font-size:39px; }
+.game-card h3 { font-size:16px; margin:12px 0 7px; }
+.game-card p { font-size:13px; line-height:1.5; color:var(--muted); min-height:38px; }
+button {
+  border:0; border-radius:11px; padding:12px 15px; margin-top:7px;
+  font-weight:800; font-size:14px; cursor:pointer;
+  background:linear-gradient(90deg,#8b73ff,#45e5f1); color:#080d21;
+}
+button:hover { filter:brightness(1.1); }
+button:focus-visible { outline:2px solid white; outline-offset:3px; }
+.secondary { background:#303755; color:white; }
+.game-card button { width:100%; }
+#playArea {
+  margin-top:28px; padding:23px; background:#12182eeF;
+  border:1px solid #8174ff70; border-radius:22px; display:none;
+}
+#playArea h2 { text-align:center; }
+.game-screen { display:none; max-width:600px; margin:auto; text-align:center; }
+.game-screen.active { display:block; }
+.hint { color:var(--muted); line-height:1.7; }
+input {
+  width:100%; padding:14px; margin-top:10px; border-radius:10px;
+  background:#080e22; border:1px solid #59638f; color:white;
+  font-size:18px; text-align:center;
+}
+#snakeCanvas {
+  display:block; width:min(100%,400px); height:auto;
+  margin:16px auto; background:#080d1c;
+  border:1px solid #61f5ff70; border-radius:8px;
+}
+.controls { display:grid; grid-template-columns:repeat(3,58px);
+  justify-content:center; gap:5px; margin-top:12px; }
+.controls button { margin:0; padding:12px 5px; }
+.controls button:nth-child(1) { grid-column:2; }
+.controls button:nth-child(2) { grid-column:1; grid-row:2; }
+.controls button:nth-child(3) { grid-column:2; grid-row:2; }
+.controls button:nth-child(4) { grid-column:3; grid-row:2; }
+.action-row { display:flex; justify-content:center; flex-wrap:wrap; gap:8px; }
+.action-row button { min-width:100px; }
+.choice { font-size:35px; min-width:75px; }
+#feedback { min-height:28px; margin:15px 0; line-height:1.6; }
+.quiz-option { display:block; width:100%; margin:9px 0; }
+footer { text-align:center; padding:24px 10px; margin-top:35px;
+  border-top:1px solid #ffffff18; color:var(--muted); font-size:13px; }
+@media(max-width:720px) {
+  .game-grid { grid-template-columns:repeat(2,1fr); }
+  .stats { gap:7px; }
+  .stat { min-width:0; flex:1; padding:12px 5px; }
+  #playArea { padding:16px 12px; }
+}
+@media(max-width:360px) {
+  .game-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">⚡ NEON GAME ZONE</div>
+  <p>Play Smart. Have Fun!</p>
+</header>
+
+<main>
+  <section class="hero">
+    <span class="pill">🎮 FREE BROWSER GAMES</span>
+    <h1>Welcome to <span>Game Zone</span></h1>
+    <p>अपना पसंदीदा गेम चुनें, अपना स्कोर बढ़ाएँ और मज़े करें!<br>
+    बिना डाउनलोड किए सीधे ब्राउज़र में खेलें।</p>
+  </section>
+
+  <div class="stats">
+    <div class="stat"><small>गेम खेले</small><strong id="totalGames">0</strong></div>
+    <div class="stat"><small>कुल पॉइंट्स</small><strong id="totalScore">0</strong></div>
+  </div>
+
+  <h2>🔥 गेम कलेक्शन</h2>
+  <section class="game-grid">
+    <article class="game-card">
+      <div class="emoji">🐍</div><h3>Snake Game</h3>
+      <p>खाना खाएँ और साँप को बड़ा बनाएँ।</p>
+      <button onclick="openGame('snake')">Play Now ▶</button>
+    </article>
+    <article class="game-card">
+      <div class="emoji">🎯</div><h3>Number Guess</h3>
+      <p>10 कोशिशों में सही नंबर खोजें।</p>
+      <button onclick="openGame('guess')">Play Now ▶</button>
+    </article>
+    <article class="game-card">
+      <div class="emoji">✊</div><h3>Rock Paper Scissors</h3>
+      <p>कंप्यूटर को चुनौती दें।</p>
+      <button onclick="openGame('rps')">Play Now ▶</button>
+    </article>
+    <article class="game-card">
+      <div class="emoji">🧠</div><h3>Quick Quiz</h3>
+      <p>सवालों के जवाब देकर पॉइंट्स कमाएँ।</p>
+      <button onclick="openGame('quiz')">Play Now ▶</button>
+    </article>
+  </section>
+
+  <section id="playArea">
+    <h2 id="gameTitle">🎮 आपका गेम</h2>
+
+    <div class="game-screen" id="snakeScreen">
+      <p class="hint">कुंजीपटल के Arrow बटन या नीचे के टच बटन इस्तेमाल करें।</p>
+      <p>स्कोर: <strong id="snakeScore">0</strong></p>
+      <canvas id="snakeCanvas" width="320" height="320"></canvas>
+      <p id="snakeMessage" class="hint" aria-live="polite">Start दबाकर खेलें।</p>
+      <div class="action-row">
+        <button onclick="startSnake()">▶ Start / Restart</button>
+        <button class="secondary" onclick="stopSnake()">⏸ Pause</button>
+      </div>
+      <div class="controls">
+        <button onclick="setDirection(0,-1)">⬆️</button>
+        <button onclick="setDirection(-1,0)">⬅️</button>
+        <button onclick="setDirection(0,1)">⬇️</button>
+        <button onclick="setDirection(1,0)">➡️</button>
+      </div>
+    </div>
+
+    <div class="game-screen" id="guessScreen">
+      <p class="hint">1 से 100 के बीच नंबर चुनें। आपके पास 10 कोशिशें हैं।</p>
+      <p>कोशिशें बाकी: <strong id="tries">10</strong></p>
+      <form id="guessForm">
+        <input id="guessInput" type="number" min="1" max="100"
+          placeholder="नंबर लिखें (1–100)" required>
+        <button type="submit">नंबर चेक करें</button>
+      </form>
+      <p id="guessFeedback" aria-live="polite">अपना पहला अनुमान लगाएँ!</p>
+      <button class="secondary" onclick="resetGuess()">🔄 नया गेम</button>
+    </div>
+
+    <div class="game-screen" id="rpsScreen">
+      <p class="hint">पत्थर, कागज़ या कैंची चुनें।</p>
+      <div class="action-row">
+        <button class="choice" onclick="playRPS('rock')" aria-label="पत्थर">✊</button>
+        <button class="choice" onclick="playRPS('paper')" aria-label="कागज़">✋</button>
+        <button class="choice" onclick="playRPS('scissors')" aria-label="कैंची">✌️</button>
+      </div>
+      <p id="rpsFeedback" aria-live="polite">अपनी चाल चुनें!</p>
+      <p>आपका स्कोर: <strong id="rpsScore">0</strong></p>
+    </div>
+
+    <div class="game-screen" id="quizScreen">
+      <p class="hint" id="quizProgress">सवाल 1</p>
+      <h3 id="quizQuestion"></h3>
+      <div id="quizOptions"></div>
+      <p id="quizFeedback" aria-live="polite"></p>
+      <button id="quizNext" onclick="nextQuestion()" style="display:none">अगला सवाल →</button>
+      <button id="quizRestart" class="secondary" onclick="startQuiz()">🔄 फिर खेलें</button>
+    </div>
+
+    <div class="action-row" style="margin-top:20px">
+      <button class="secondary" onclick="closeGame()">✖ गेम बंद करें</button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  © <span id="year"></span> Neon Game Zone · Made for fun ❤️
+</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+let gamesPlayed = 0;
+let totalPoints = 0;
+const played = new Set();
+
+function updateStats(points = 0) {
+  totalPoints += points;
+  $("totalGames").textContent = gamesPlayed;
+  $("totalScore").textContent = totalPoints;
+}
+function finishGame(name, points) {
+  if (!played.has(name)) {
+    played.add(name);
+    gamesPlayed++;
+  }
+  updateStats(points);
+}
+function openGame(name) {
+  stopSnake();
+  $("playArea").style.display = "block";
+  document.querySelectorAll(".game-screen").forEach(s => s.classList.remove("active"));
+  $("playArea").scrollIntoView({behavior:"smooth", block:"start"});
+  const titles = {
+    snake:"🐍 Snake Game", guess:"🎯 Number Guess",
+    rps:"✊ Rock Paper Scissors", quiz:"🧠 Quick Quiz"
+  };
+  $("gameTitle").textContent = titles[name];
+  $(name + "Screen").classList.add("active");
+  if(name === "guess") resetGuess();
+  if(name === "quiz") startQuiz();
+  if(name === "snake") drawSnake();
+}
+function closeGame() {
+  stopSnake();
+  $("playArea").style.display = "none";
+}
+$("year").textContent = new Date().getFullYear();
+
+/* NUMBER GUESS */
+let secret, tries, guessOver;
+function resetGuess() {
+  secret = Math.floor(Math.random() * 100) + 1;
+  tries = 10; guessOver = false;
+  $("tries").textContent = tries;
+  $("guessInput").value = "";
+  $("guessInput").disabled = false;
+  $("guessFeedback").textContent = "अपना पहला अनुमान लगाएँ!";
+  $("guessForm").querySelector("button").disabled = false;
+}
+$("guessForm").addEventListener("submit", e => {
+  e.preventDefault();
+  if(guessOver) return;
+  const n = Number($("guessInput").value);
+  if(!Number.isInteger(n) || n < 1 || n > 100) {
+    $("guessFeedback").textContent = "1 से 100 के बीच पूरा नंबर लिखें।";
+    return;
+  }
+  tries--;
+  $("tries").textContent = tries;
+  if(n === secret) {
+    const points = tries * 10 + 10;
+    $("guessFeedback").textContent = "🎉 सही जवाब! नंबर " + secret + " था। +" + points + " पॉइंट्स";
+    finishGame("guess", points);
+    guessOver = true;
+  } else if(tries === 0) {
+    $("guessFeedback").textContent = "गेम खत्म! सही नंबर " + secret + " था।";
+    finishGame("guess", 0);
+    guessOver = true;
+  } else {
+    $("guessFeedback").textContent = n < secret ? "📈 थोड़ा बड़ा नंबर आज़माएँ!" : "📉 थोड़ा छोटा नंबर आज़माएँ!";
+    $("guessInput").value = "";
+  }
+  if(guessOver) {
+    $("guessInput").disabled = true;
+    $("guessForm").querySelector("button").disabled = true;
+  }
+});
+
+/* ROCK PAPER SCISSORS */
+let rpsScore = 0;
+function playRPS(choice) {
+  const choices = ["rock","paper","scissors"];
+  const emojis = {rock:"✊ पत्थर",paper:"✋ कागज़",scissors:"✌️ कैंची"};
+  const computer = choices[Math.floor(Math.random()*3)];
+  let message;
+  if(choice === computer) message = "🤝 बराबरी!";
+  else if((choice==="rock" && computer==="scissors") ||
+          (choice==="paper" && computer==="rock") ||
+          (choice==="scissors" && computer==="paper")) {
+    message = "🎉 आप जीत गए!"; rpsScore++; finishGame("rps", 10);
+  } else message = "😄 कंप्यूटर जीत गया!";
+  $("rpsFeedback").textContent =
+    "आप: " + emojis[choice] + " | कंप्यूटर: " + emojis[computer] + " — " + message;
+  $("rpsScore").textContent = rpsScore;
+}
+
+/* QUICK QUIZ */
+const questions = [
+  {q:"भारत की राजधानी क्या है?", a:["मुंबई","नई दिल्ली","लखनऊ","जयपुर"], correct:1},
+  {q:"एक सप्ताह में कितने दिन होते हैं?", a:["5","6","7","8"], correct:2},
+  {q:"सूर्य किस दिशा से उगता है?", a:["पश्चिम","उत्तर","दक्षिण","पूर्व"], correct:3},
+  {q:"पानी का रासायनिक सूत्र क्या है?", a:["CO₂","O₂","H₂O","NaCl"], correct:2},
+  {q:"2 + 8 × 2 का मान क्या है?", a:["20","18","16","12"], correct:1}
+];
+let qIndex = 0, qScore = 0, qAnswered = false;
+function startQuiz() {
+  qIndex = 0; qScore = 0; qAnswered = false;
+  $("quizFeedback").textContent = "";
+  $("quizNext").style.display = "none";
+  $("quizRestart").style.display = "none";
+  showQuestion();
+}
+function showQuestion() {
+  const q = questions[qIndex];
+  $("quizProgress").textContent = "सवाल " + (qIndex+1) + " / " + questions.length;
+  $("quizQuestion").textContent = q.q;
+  $("quizOptions").innerHTML = "";
+  $("quizFeedback").textContent = "";
+  $("quizNext").style.display = "none";
+  qAnswered = false;
+  q.a.forEach((answer, i) => {
+    const btn = document.createElement("button");
+    btn.className = "quiz-option";
+    btn.textContent = answer;
+    btn.onclick = () => answerQuestion(i);
+    $("quizOptions").appendChild(btn);
+  });
+}
+function answerQuestion(i) {
+  if(qAnswered) return;
+  qAnswered = true;
+  const correct = questions[qIndex].correct;
+  [...$("quizOptions").children].forEach((btn, index) => {
+    btn.disabled = true;
+    if(index === correct) btn.textContent += " ✓";
+  });
+  if(i === correct) {
+    qScore += 10;
+    $("quizFeedback").textContent = "🎉 बिल्कुल सही! +10 पॉइंट्स";
+  } else {
+    $("quizFeedback").textContent = "❌ सही जवाब: " + questions[qIndex].a[correct];
+  }
+  $("quizNext").textContent = qIndex === questions.length-1 ? "रिज़ल्ट देखें" : "अगला सवाल →";
+  $("quizNext").style.display = "inline-block";
+}
+function nextQuestion() {
+  if(!qAnswered) return;
+  if(qIndex < questions.length-1) {
+    qIndex++; showQuestion();
+  } else {
+    $("quizQuestion").textContent = "🎊 आपका स्कोर: " + qScore + " / " + (questions.length*10);
+    $("quizOptions").innerHTML = "";
+    $("quizFeedback").textContent = qScore >= 30 ? "शानदार खेल!" : "अच्छी कोशिश! फिर खेलें।";
+    $("quizNext").style.display = "none";
+    $("quizRestart").style.display = "inline-block";
+    finishGame("quiz", qScore);
+  }
+}
+
+/* SNAKE GAME */
+const canvas = $("snakeCanvas");
+const ctx = canvas.getContext("2d");
+const cell = 16, cells = 20;
+let snake, food, dir, nextDir, snakeScore = 0, snakeTimer = null, snakeOver = true;
+
+function placeFood() {
+  do {
+    food = {x:Math.floor(Math.random()*cells), y:Math.floor(Math.random()*cells)};
+  } while(snake.some(p => p.x===food.x && p.y===food.y));
+}
+function drawSnake() {
+  ctx.fillStyle = "#080d1c";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.strokeStyle = "#ffffff09";
+  for(let i=0;i<=cells;i++) {
+    ctx.beginPath(); ctx.moveTo(i*cell,0); ctx.lineTo(i*cell,canvas.height); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0,i*cell); ctx.lineTo(canvas.width,i*cell); ctx.stroke();
+  }
+  if(food) {
+    ctx.fillStyle = "#ff658b";
+    ctx.beginPath();
+    ctx.arc(food.x*cell+cell/2, food.y*cell+cell/2, cell/2.7, 0, Math.PI*2);
+    ctx.fill();
+  }
+  if(snake) snake.forEach((p,i) => {
+    ctx.fillStyle = i===0 ? "#61f5ff" : "#5ad9b3";
+    ctx.fillRect(p.x*cell+1,p.y*cell+1,cell-2,cell-2);
+  });
+}
+function startSnake() {
+  stopSnake();
+  snake = [{x:10,y:10},{x:9,y:10},{x:8,y:10}];
+  dir = {x:1,y:0}; nextDir = {x:1,y:0};
+  snakeScore = 0; snakeOver = false;
+  $("snakeScore").textContent = "0";
+  $("snakeMessage").textContent = "चलें! खाना इकट्ठा करें।";
+  placeFood(); drawSnake();
+  snakeTimer = setInterval(moveSnake, 145);
+}
+function stopSnake() {
+  if(snakeTimer) clearInterval(snakeTimer);
+  snakeTimer = null;
+}
+function setDirection(x,y) {
+  if(snakeOver) return;
+  if(x === -dir.x && y === -dir.y) return;
+  nextDir = {x,y};
+}
+function moveSnake() {
+  dir = nextDir;
+  const head = {x:snake[0].x+dir.x, y:snake[0].y+dir.y};
+  const eating = head.x===food.x && head.y===food.y;
+  if(head.x<0 || head.y<0 || head.x>=cells || head.y>=cells ||
+     snake.slice(0, eating ? undefined : -1).some(p=>p.x===head.x && p.y===head.y)) {
+    stopSnake(); snakeOver = true;
+    $("snakeMessage").textContent = "💥 गेम ओवर! स्कोर: " + snakeScore + ". फिर खेलने के लिए Restart दबाएँ।";
+    finishGame("snake", snakeScore);
+    return;
+  }
+  snake.unshift(head);
+  if(eating) {
+    snakeScore += 10;
+    $("snakeScore").textContent = snakeScore;
+    $("snakeMessage").textContent = "🍎 बढ़िया! +10 पॉइंट्स";
+    placeFood();
+  } else snake.pop();
+  drawSnake();
+}
+document.addEventListener("keydown", e => {
+  const keys = {
+    ArrowUp:[0,-1], ArrowDown:[0,1],
+    ArrowLeft:[-1,0], ArrowRight:[1,0]
+  };
+  if(keys[e.key] && $("snakeScreen").classList.contains("active")) {
+    e.preventDefault();
+    setDirection(...keys[e.key]);
+  }
+});
+$("snakeCanvas").addEventListener("touchstart", e => {
+  if(snakeOver) return;
+  const t = e.changedTouches[0];
+  const rect = canvas.getBoundingClientRect();
+  const x = (t.clientX-rect.left)/rect.width;
+  const y = (t.clientY-rect.top)/rect.height;
+  if(Math.abs(x-.5)>Math.abs(y-.5)) setDirection(x<.5?-1:1,0);
+  else setDirection(0,y<.5?-1:1);
+}, {passive:true});
+drawSnake();
+</script>
+</body>
+  </html>
+        </html>
