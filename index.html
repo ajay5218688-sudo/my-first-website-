@@ -1,415 +1,416 @@
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#090d20">
-  <title>Neon Game Zone | Play & Win</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Arial, sans-serif;
-      color: #ffffff;
-      background:
-        radial-gradient(ellipse at top, #20265b 0%, transparent 55%),
-        linear-gradient(135deg, #080b18, #15102c, #071827);
-    }
-
-    header {
-      padding: 22px 16px;
-      text-align: center;
-      border-bottom: 1px solid #ffffff20;
-    }
-
-    .logo {
-      font-size: 28px;
-      font-weight: 900;
-      color: #64f8ff;
-      text-shadow: 0 0 18px #00d9ff70;
-    }
-
-    header p {
-      color: #b9c4e9;
-      margin-bottom: 0;
-    }
-
-    main {
-      width: min(920px, 92%);
-      margin: 35px auto;
-    }
-
-    .hero {
-      text-align: center;
-      margin-bottom: 28px;
-    }
-
-    .hero h1 {
-      font-size: clamp(30px, 6vw, 48px);
-      margin-bottom: 10px;
-    }
-
-    .hero h1 span {
-      color: #a88bff;
-    }
-
-    .hero p {
-      color: #c2c9e6;
-      line-height: 1.7;
-    }
-
-    .game-card {
-      max-width: 520px;
-      margin: 0 auto;
-      padding: 28px 22px;
-      text-align: center;
-      background: #151a32dd;
-      border: 1px solid #7777ff60;
-      border-radius: 24px;
-      box-shadow: 0 15px 55px #0006;
-    }
-
-    .game-icon {
-      font-size: 48px;
-    }
-
-    .game-card h2 {
-      margin: 10px 0;
-    }
-
-    .instructions {
-      color: #bdc6e8;
-      line-height: 1.7;
-      font-size: 14px;
-    }
-
-    .stats {
-      display: flex;
-      gap: 12px;
-      margin: 22px 0;
-    }
-
-    .stat {
-      flex: 1;
-      padding: 13px 6px;
-      border-radius: 14px;
-      background: #252b4a;
-    }
-
-    .stat small {
-      display: block;
-      color: #bfc9e9;
-      margin-bottom: 7px;
-    }
-
-    .stat strong {
-      font-size: 23px;
-      color: #6cf7ff;
-    }
-
-    input {
-      width: 100%;
-      padding: 15px;
-      border-radius: 12px;
-      border: 1px solid #646d9f;
-      background: #0b1024;
-      color: white;
-      font-size: 20px;
-      text-align: center;
-      outline: none;
-    }
-
-    input:focus {
-      border-color: #6cf7ff;
-    }
-
-    button {
-      border: none;
-      border-radius: 12px;
-      padding: 14px 18px;
-      margin-top: 12px;
-      width: 100%;
-      background: linear-gradient(90deg, #6c5cff, #00d9ed);
-      color: #080d21;
-      font-size: 16px;
-      font-weight: 800;
-      cursor: pointer;
-      transition: transform 0.2s, filter 0.2s;
-    }
-
-    button:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.1);
-    }
-
-    button:focus-visible {
-      outline: 2px solid white;
-      outline-offset: 3px;
-    }
-
-    .secondary {
-      background: #303755;
-      color: white;
-    }
-
-    #message {
-      min-height: 55px;
-      margin: 18px 0 0;
-      color: #ffffff;
-      line-height: 1.6;
-    }
-
-    .game-card.won {
-      border-color: #55ffb0;
-      box-shadow: 0 0 35px #55ffb025;
-    }
-
-    .other-games {
-      margin-top: 38px;
-    }
-
-    .other-games h2 {
-      text-align: center;
-      margin-bottom: 18px;
-    }
-
-    .game-list {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-    .game-tile {
-      text-align: center;
-      padding: 20px 8px;
-      background: #171d36;
-      border: 1px solid #ffffff15;
-      border-radius: 16px;
-    }
-
-    .game-tile div {
-      font-size: 32px;
-    }
-
-    .game-tile p {
-      font-size: 14px;
-      color: #d7dcf2;
-      margin-bottom: 0;
-    }
-
-    .coming {
-      display: inline-block;
-      margin-top: 8px;
-      font-size: 11px;
-      color: #a99cff;
-    }
-
-    footer {
-      text-align: center;
-      padding: 25px 12px;
-      margin-top: 35px;
-      border-top: 1px solid #ffffff18;
-      color: #aab4d7;
-      font-size: 13px;
-    }
-
-    @media (max-width: 480px) {
-      main {
-        margin-top: 25px;
-      }
-
-      .game-card {
-        padding: 22px 16px;
-      }
-
-      .game-list {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050816">
+<title>Neon 3D Arcade | 3D Games</title>
+<style>
+:root{--cyan:#61f5ff;--muted:#a9b4d8}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;color:#f5f7ff;min-height:100vh;
+background:radial-gradient(circle at 20% 0,#2b1b6b,transparent 45%),radial-gradient(circle at 90% 30%,#0b3b5a,transparent 40%),#050816}
+header{padding:20px 14px;text-align:center;border-bottom:1px solid #61f5ff30}
+.logo{font-size:clamp(24px,5vw,36px);font-weight:900;letter-spacing:2px;color:var(--cyan);text-shadow:0 0 20px #00e5ff,0 0 40px #ff4dd860}
+header p{color:var(--muted);margin:6px 0 0}
+main{width:min(1000px,94%);margin:24px auto}
+.stats{display:flex;gap:12px;justify-content:center;margin-bottom:22px}
+.stat{background:#0d1230;border:1px solid #61f5ff40;padding:12px 22px;border-radius:14px;text-align:center;min-width:130px}
+.stat small{display:block;color:var(--muted);margin-bottom:6px}
+.stat strong{color:var(--cyan);font-size:24px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:#0d1230;border:1px solid #ffffff1c;border-radius:20px;overflow:hidden;transition:.2s;text-align:center}
+.card:hover{transform:translateY(-4px);border-color:var(--cyan);box-shadow:0 0 24px #61f5ff30}
+.thumb{height:120px;display:flex;align-items:center;justify-content:center;font-size:56px;position:relative;background-image:linear-gradient(135deg,var(--a),var(--b))}
+.thumb i{position:absolute;top:9px;left:9px;font-style:normal;font-size:11px;background:#000a;padding:3px 9px;border-radius:20px}
+.card .b{padding:14px}
+.card h3{margin:0 0 6px;font-size:18px}
+.card p{margin:0 0 6px;color:var(--muted);font-size:13px;line-height:1.5;min-height:40px}
+.card small{display:block;color:var(--cyan);font-size:11px;margin-bottom:10px}
+button{border:0;border-radius:12px;padding:12px 16px;margin-top:6px;font-weight:800;font-size:14px;cursor:pointer;background:linear-gradient(90deg,#8b73ff,#45e5f1);color:#060a1e}
+button:hover{filter:brightness(1.12)}
+button:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.card button{width:100%;margin:0}
+.secondary{background:#303755;color:#fff}
+#play{margin-top:26px;padding:20px;background:#0a0f28f0;border:1px solid #a78bfa80;border-radius:22px;display:none;box-shadow:0 0 40px #a78bfa30}
+#play h2{text-align:center;margin:0 0 8px}
+#screen{max-width:420px;margin:auto;text-align:center}
+.hint{color:var(--muted);line-height:1.6;font-size:14px;margin:6px 0}
+.hud{display:flex;justify-content:space-between;gap:8px;background:#0d1230;border:1px solid #61f5ff40;border-radius:12px;padding:8px 14px;font-weight:700}
+.wrap{position:relative;width:min(100%,360px);margin:12px auto}
+canvas{display:block;width:100%;height:auto;border:1px solid #61f5ff80;border-radius:12px;box-shadow:0 0 28px #61f5ff40;touch-action:none;user-select:none;-webkit-user-select:none}
+.ov{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#000a;font:bold 26px/1.5 Arial;color:var(--cyan);border-radius:12px;text-align:center;pointer-events:none}
+.row{display:flex;justify-content:center;flex-wrap:wrap;gap:8px}
+footer{text-align:center;padding:24px 10px;margin-top:30px;border-top:1px solid #ffffff18;color:var(--muted);font-size:13px}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.grid{grid-template-columns:1fr}.stat{min-width:0;flex:1}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
 </head>
 <body>
+<header><div class="logo">🧊 NEON 3D ARCADE</div><p>Real 3D games · Levels · Hi-score · Sound</p></header>
+<main>
+  <div class="stats">
+    <div class="stat"><small>गेम खेले</small><strong id="tg">0</strong></div>
+    <div class="stat"><small>कुल पॉइंट्स</small><strong id="tp">0</strong></div>
+    <div class="stat"><small>कुल गेम</small><strong id="gc">0</strong></div>
+  </div>
+  <section class="grid" id="grid"></section>
+  <section id="play">
+    <h2 id="title"></h2>
+    <div id="screen"></div>
+    <div class="row" style="margin-top:14px"><button class="secondary" id="close">✖ गेम बंद करें</button></div>
+  </section>
+</main>
+<footer>© <span id="yr"></span> Neon 3D Arcade · Made for fun ❤️</footer>
 
-  <header>
-    <div class="logo">⚡ NEON GAME ZONE</div>
-    <p>Play Smart. Have Fun!</p>
-  </header>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const $=id=>document.getElementById(id),R=(a,b)=>a+Math.random()*(b-a);
+let games=0,pts=0,cleanup=[],mute=false,ac;const played=new Set();
+function score(n,p){if(!played.has(n)){played.add(n);games++}pts+=p;$("tg").textContent=games;$("tp").textContent=pts}
+function beep(f,d=.08,t="square"){if(mute)return;try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();const o=ac.createOscillator(),g=ac.createGain();o.type=t;o.frequency.value=f;g.gain.value=.05;o.connect(g);g.connect(ac.destination);o.start();o.stop(ac.currentTime+d)}catch(e){}}
+function K(f){document.addEventListener("keydown",f);cleanup.push(()=>document.removeEventListener("keydown",f))}
+const hiGet=id=>{try{return+localStorage.getItem("n3d_"+id)||0}catch(e){return 0}};
+const hiSet=(id,v)=>{try{localStorage.setItem("n3d_"+id,v)}catch(e){}};
+const mesh=(geo,col)=>new THREE.Mesh(geo,new THREE.MeshStandardMaterial({color:col,emissive:col,emissiveIntensity:.4}));
+const BX=window.THREE&&new THREE.BoxGeometry(1,.5,1);
 
-  <main>
-    <section class="hero">
-      <h1>Welcome to <span>Game Zone</span> 🎮</h1>
-      <p>
-        अपनी समझ आज़माएँ, सही नंबर खोजें और अपना हाई स्कोर बनाएँ!
-        <br>कोई डाउनलोड नहीं — सीधे ब्राउज़र में खेलें।
-      </p>
-    </section>
+/* ===== SHARED 3D ENGINE: scene, lights, fog, camera, HUD, levels, lives, hi-score, sound, pause, swipe/keys ===== */
+function Arc3(el,id,G){
+  if(!window.THREE){el.innerHTML='<p class="hint">three.js लोड नहीं हुआ। इंटरनेट कनेक्शन जाँचें।</p>';return}
+  el.innerHTML='<p class="hint">'+G.hint+'</p><div class="hud"><span>⭐ <b id="sc">0</b></span><span>🏆 <b id="hi">0</b></span><span id="lv"></span><span>LV <b id="lvl">1</b></span></div><div class="wrap"><canvas width="360" height="480"></canvas><div class="ov" id="ov">▶ Start दबाएँ</div></div><div class="row"><button id="go">▶ Start / Restart</button><button class="secondary" id="ps">⏸ Pause</button><button class="secondary" id="mu">'+(mute?"🔇":"🔊")+'</button></div>';
+  const c=el.querySelector("canvas"),q=s=>el.querySelector(s);
+  const ren=new THREE.WebGLRenderer({canvas:c,antialias:true});ren.setPixelRatio(Math.min(devicePixelRatio||1,2));ren.setSize(360,480,false);
+  const scene=new THREE.Scene();scene.background=new THREE.Color(0x070a1a);scene.fog=new THREE.Fog(0x070a1a,15,70);
+  const cam=new THREE.PerspectiveCamera(60,.75,.1,200);cam.position.set(0,3,6);
+  scene.add(new THREE.AmbientLight(0xffffff,.6));const L=new THREE.DirectionalLight(0xffffff,.9);L.position.set(3,8,5);scene.add(L);
+  const S={hi:hiGet(id),run:false,over:false,started:false,px:0,py:0,tap:false,sw:0,score:0,lives:3,level:1,cam,scene,g:null};
+  S.add=p=>{S.score+=p;S.level=1+Math.floor(S.score/G.lvl)};
+  S.end=()=>{if(S.over)return;S.run=false;S.over=true;if(S.score>S.hi){S.hi=S.score;hiSet(id,S.hi)}score(id,S.score);beep(90,.4,"sawtooth")};
+  S.hurt=()=>{S.lives--;beep(130,.2,"sawtooth");if(S.lives<=0)S.end()};
+  const pos=e=>{const r=c.getBoundingClientRect();S.px=(e.clientX-r.left)/r.width*2-1;S.py=-((e.clientY-r.top)/r.height*2-1)};
+  c.onpointermove=pos;c.onpointerdown=e=>{pos(e);S.sx=e.clientX};
+  c.onpointerup=e=>{const dx=e.clientX-S.sx;if(Math.abs(dx)>30)S.sw=dx>0?1:-1;else S.tap=true};
+  K(e=>{if(e.key=="ArrowLeft")S.sw=-1;else if(e.key=="ArrowRight")S.sw=1;else if(e.key==" "||e.key=="ArrowUp"||e.key=="ArrowDown"){e.preventDefault();S.tap=true}});
+  q("#go").onclick=()=>{if(S.g)scene.remove(S.g);S.g=new THREE.Group();scene.add(S.g);Object.assign(S,{score:0,lives:3,level:1,over:false,run:true,started:true,tap:false,sw:0});G.init(S)};
+  q("#ps").onclick=()=>{if(S.started&&!S.over)S.run=!S.run};
+  q("#mu").onclick=e=>{mute=!mute;e.target.textContent=mute?"🔇":"🔊"};
+  let last=performance.now(),raf;
+  const loop=t=>{raf=requestAnimationFrame(loop);const d=Math.min((t-last)/1000,.05)*60;last=t;
+    if(S.run)G.update(S,d);S.tap=false;S.sw=0;ren.render(scene,cam);
+    q("#sc").textContent=S.score;q("#hi").textContent=S.hi;q("#lvl").textContent=S.level;q("#lv").textContent="❤️".repeat(Math.max(S.lives,0));
+    const o=q("#ov");o.style.display=S.run?"none":"flex";
+    o.innerHTML=S.over?"💥 GAME OVER<br><small>स्कोर: "+S.score+(S.score>=S.hi&&S.score?" 🏆 नया रिकॉर्ड!":"")+"</small>":S.started?"⏸ PAUSED":"▶ Start दबाएँ"};
+  raf=requestAnimationFrame(loop);cleanup.push(()=>{cancelAnimationFrame(raf);ren.dispose()});
+}
 
-    <section class="game-card" id="gameCard">
-      <div class="game-icon">🎯</div>
-      <h2>Number Guess Challenge</h2>
-      <p class="instructions">
-        मैंने 1 से 100 के बीच एक नंबर चुना है।
-        10 कोशिशों के अंदर सही नंबर खोजिए!
-      </p>
+/* ===== GAME REGISTRY — नया 3D गेम = add(...) + {lvl, hint, init(S), update(S,d)} ===== */
+const GAMES=[];
+const add=(id,title,emoji,desc,cat,a,b,G)=>GAMES.push({id,title,emoji,desc,cat,a,b,G});
 
-      <div class="stats">
-        <div class="stat">
-          <small>कोशिशें बाकी</small>
-          <strong id="attempts">10</strong>
-        </div>
-        <div class="stat">
-          <small>कुल स्कोर</small>
-          <strong id="score">0</strong>
-        </div>
-      </div>
+/* 1 NEON RUNNER 3D */
+const OB=window.THREE&&new THREE.BoxGeometry(1.4,1,1.4),CN=window.THREE&&new THREE.TorusGeometry(.4,.12,8,16);
+add("run3d","Neon Runner 3D","🏃","3D सुरंग में दौड़ें, बाधाओं से बचें, सिक्के लें।","3D Runner","#06b6d4","#7c3aed",{lvl:25,hint:"← → या स्वाइप से लेन बदलें, टैप / Space से कूदें। 🪙 = +5",
+ init(S){const g=S.g;S.lane=0;S.y=.5;S.vy=0;S.inv=0;S.ob=[];S.co=[];S.tm=0;S.fl=[];
+  S.pl=mesh(new THREE.BoxGeometry(.9,.9,.9),0x61f5ff);g.add(S.pl);
+  const fl=new THREE.Mesh(new THREE.PlaneGeometry(10,400),new THREE.MeshStandardMaterial({color:0x0b1030}));fl.rotation.x=-Math.PI/2;fl.position.z=-150;g.add(fl);
+  for(let i=0;i<14;i++)[-1,1].forEach(s=>{const m=mesh(new THREE.BoxGeometry(.1,.05,3),0xff4dd8);m.position.set(s,.03,-i*5);g.add(m);S.fl.push(m)});
+  S.cam.position.set(0,3.5,6);S.cam.lookAt(0,.5,-6)},
+ update(S,d){const sp=(.3+S.level*.04)*d,p=S.pl.position;
+  if(S.sw)S.lane=Math.max(-1,Math.min(1,S.lane+S.sw));
+  if(S.tap&&S.y<=.51){S.vy=.26;beep(500,.05)}
+  S.vy-=.014*d;S.y=Math.max(.5,S.y+S.vy*d);if(S.y==.5)S.vy=0;
+  p.x+=(S.lane*2-p.x)*.25*d;p.y=S.y;S.pl.rotation.x-=.15*d;
+  S.inv-=d;S.pl.visible=S.inv<=0||Math.floor(S.inv/5)%2==0;
+  S.fl.forEach(m=>{m.position.z+=sp;if(m.position.z>6)m.position.z-=70});
+  S.tm-=d;if(S.tm<=0){S.tm=Math.max(14,40-S.level*2);const x=(Math.floor(Math.random()*3)-1)*2;
+   if(Math.random()<.7){const o=mesh(OB,0xff2d55);o.position.set(x,.5,-70);S.g.add(o);S.ob.push(o)}
+   else{const k=mesh(CN,0xffd166);k.position.set(x,1,-70);S.g.add(k);S.co.push(k)}}
+  S.ob.forEach(o=>{o.position.z+=sp;
+   if(!o.h&&Math.abs(o.position.x-p.x)<.9&&Math.abs(o.position.z)<.9&&S.y<1.4&&S.inv<=0){o.h=1;S.inv=80;S.hurt()}
+   if(!o.p&&o.position.z>1){o.p=1;S.add(1)}});
+  S.co.forEach(k=>{k.position.z+=sp;k.rotation.y+=.1*d;
+   if(!k.t&&Math.abs(k.position.x-p.x)<.9&&Math.abs(k.position.z)<.9&&S.y<2){k.t=1;k.visible=false;S.add(5);beep(1100,.08,"triangle")}});
+  const keep=a=>a.filter(o=>o.position.z<8||(S.g.remove(o),false));S.ob=keep(S.ob);S.co=keep(S.co)}});
 
-      <form id="guessForm">
-        <label for="guess" class="instructions">
-          अपना नंबर चुनें (1–100)
-        </label>
-        <input
-          id="guess"
-          type="number"
-          min="1"
-          max="100"
-          placeholder="जैसे 42"
-          required
-        >
-        <button type="submit">🚀 नंबर चेक करें</button>
-      </form>
+/* 2 SKY RINGS 3D */
+add("rings","Sky Rings 3D","🛸","जहाज़ उड़ाएँ, रिंग से गुज़रें, चट्टानों से बचें।","3D Flyer","#6366f1","#ec4899",{lvl:40,hint:"उंगली/माउस से जहाज़ उड़ाएँ। रिंग से गुज़रें (+5, कॉम्बो ज़्यादा), 🔴 चट्टान से बचें।",
+ init(S){S.sx=0;S.sy=0;S.rg=[];S.as=[];S.tm=0;S.cb=0;
+  S.sh=mesh(new THREE.ConeGeometry(.5,1.6,6),0x61f5ff);S.sh.rotation.x=-Math.PI/2;S.g.add(S.sh);
+  S.cam.position.set(0,0,7);S.cam.lookAt(0,0,-10)},
+ update(S,d){const sp=Math.min(.45+S.level*.05,1.2)*d;
+  S.sx+=(S.px*4-S.sx)*.12*d;S.sy+=(S.py*2.6-S.sy)*.12*d;S.sh.position.set(S.sx,S.sy,0);
+  S.tm-=d;if(S.tm<=0){S.tm=Math.max(18,45-S.level*2);const x=R(-4,4),y=R(-2.6,2.6);
+   if(Math.random()<.55){const r=mesh(new THREE.TorusGeometry(1.5,.12,8,24),0xffd166);r.position.set(x,y,-80);S.g.add(r);S.rg.push(r)}
+   else{const a=mesh(new THREE.IcosahedronGeometry(R(.6,1.1),0),0xff2d55);a.position.set(x,y,-80);S.g.add(a);S.as.push(a)}}
+  S.rg.forEach(r=>{r.position.z+=sp;r.rotation.z+=.02*d;
+   if(!r.d&&r.position.z>-.5){r.d=1;if(Math.hypot(r.position.x-S.sx,r.position.y-S.sy)<1.6){S.cb++;S.add(5+Math.min(S.cb,5));beep(800+S.cb*60,.1,"triangle");r.material.emissiveIntensity=1.6}else S.cb=0}});
+  S.as.forEach(a=>{a.position.z+=sp;a.rotation.x+=.03*d;a.rotation.y+=.02*d;
+   if(!a.h&&a.position.z>-.8&&a.position.z<.8&&Math.hypot(a.position.x-S.sx,a.position.y-S.sy)<1.1){a.h=1;S.hurt()}});
+  const keep=a=>a.filter(o=>o.position.z<10||(S.g.remove(o),false));S.rg=keep(S.rg);S.as=keep(S.as);
+  S.cam.position.x=S.sx*.4;S.cam.position.y=S.sy*.4}});
 
-      <p id="message" role="status" aria-live="polite">
-        तैयार हैं? अपना पहला अनुमान लगाएँ!
-      </p>
+/* 3 STACK TOWER 3D */
+const blk=(S,i,w,d,x,z)=>{const m=mesh(BX,new THREE.Color().setHSL((i*.04)%1,.9,.55).getHex());m.scale.set(w,1,d);m.position.set(x,i*.5,z);S.g.add(m);return m};
+const spawn=S=>{const t=S.top,m=blk(S,S.n+1,t.w,t.d,t.x,t.z);S.cur={m,pos:-5,dir:1};if(S.ax==0)m.position.x=-5;else m.position.z=-5};
+add("stack3d","Stack Tower 3D","🗼","3D में ब्लॉक जमाएँ, आसमान छू लें।","3D Skill","#10b981","#3b82f6",{lvl:10,hint:"ब्लॉक गिराने के लिए टैप / Space। बिल्कुल सही = परफेक्ट कॉम्बो!",
+ init(S){S.lives=1;S.n=0;S.cb=0;S.ax=0;S.fall=[];S.cy=0;S.top={x:0,z:0,w:3,d:3};blk(S,0,3,3,0,0);spawn(S)},
+ update(S,d){const c=S.cur,sp=(.06+S.level*.012)*d;
+  c.pos+=c.dir*sp;if(Math.abs(c.pos)>5)c.dir*=-1;
+  if(S.ax==0)c.m.position.x=c.pos;else c.m.position.z=c.pos;
+  S.fall.forEach(f=>{f.position.y-=.15*d;f.rotation.x+=.05*d});
+  S.cy+=(S.n*.5-S.cy)*.08*d;S.cam.position.set(7,S.cy+5,7);S.cam.lookAt(0,S.cy,0);
+  if(S.tap){const t=S.top,a=S.ax,sz=a?t.d:t.w,tc=a?t.z:t.x,dl=c.pos-tc,ov=sz-Math.abs(dl);
+   if(ov<=0){S.end();return}
+   let ns=ov,nc=tc+dl/2;
+   if(Math.abs(dl)<.12){ns=sz;nc=tc;S.cb++;S.add(3);beep(900+S.cb*60,.1,"triangle")}
+   else{S.cb=0;S.add(1);beep(400,.06);const fs=Math.abs(dl),fm=mesh(BX,0xff4dd8),y=(S.n+1)*.5;
+    fm.scale.set(a?t.w:fs,1,a?fs:t.d);const fc=c.pos+Math.sign(dl)*(sz/2-fs/2);
+    fm.position.set(a?t.x:fc,y,a?fc:t.z);S.g.add(fm);S.fall.push(fm)}
+   if(a)c.m.scale.z=ns;else c.m.scale.x=ns;
+   if(a)c.m.position.z=nc;else c.m.position.x=nc;
+   S.top={w:a?t.w:ns,d:a?ns:t.d,x:a?t.x:nc,z:a?nc:t.z};S.n++;S.ax=1-S.ax;spawn(S)}}});
 
-      <button class="secondary" id="restart" type="button">
-        🔄 नया गेम शुरू करें
-      </button>
-    </section>
-
-    <section class="other-games">
-      <h2>🔥 गेम कलेक्शन</h2>
-      <div class="game-list">
-        <div class="game-tile">
-          <div>🧠</div>
-          <strong>Brain Quiz</strong>
-          <p>दिमागी सवाल</p>
-          <span class="coming">जल्द आ रहा है</span>
-        </div>
-        <div class="game-tile">
-          <div>🐍</div>
-          <strong>Snake Game</strong>
-          <p>क्लासिक आर्केड</p>
-          <span class="coming">जल्द आ रहा है</span>
-        </div>
-        <div class="game-tile">
-          <div>✊</div>
-          <strong>Rock Paper Scissors</strong>
-          <p>कंप्यूटर को हराएँ</p>
-          <span class="coming">जल्द आ रहा है</span>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    © <span id="year"></span> Neon Game Zone · Made for fun ❤️
-  </footer>
-
-  <script>
-    const form = document.getElementById("guessForm");
-    const input = document.getElementById("guess");
-    const message = document.getElementById("message");
-    const attemptsDisplay = document.getElementById("attempts");
-    const scoreDisplay = document.getElementById("score");
-    const restartButton = document.getElementById("restart");
-    const gameCard = document.getElementById("gameCard");
-
-    let secretNumber;
-    let attempts;
-    let score;
-    let gameOver;
-
-    function startGame() {
-      secretNumber = Math.floor(Math.random() * 100) + 1;
-      attempts = 10;
-      score = 0;
-      gameOver = false;
-
-      attemptsDisplay.textContent = attempts;
-      scoreDisplay.textContent = score;
-      message.textContent = "तैयार हैं? अपना पहला अनुमान लगाएँ!";
-      input.value = "";
-      input.disabled = false;
-      form.querySelector("button").disabled = false;
-      form.querySelector("button").style.opacity = "1";
-      gameCard.classList.remove("won");
-      input.focus();
-    }
-
-    form.addEventListener("submit", function(event) {
-      event.preventDefault();
-
-      if (gameOver) return;
-
-      const guess = Number(input.value);
-
-      if (!Number.isInteger(guess) || guess < 1 || guess > 100) {
-        message.textContent = "कृपया 1 से 100 के बीच पूरा नंबर डालें।";
-        return;
-      }
-
-      attempts--;
-      attemptsDisplay.textContent = attempts;
-
-      if (guess === secretNumber) {
-        score = attempts * 10 + 10;
-        scoreDisplay.textContent = score;
-        message.textContent =
-          "🎉 शानदार! सही नंबर " + secretNumber +
-          " था। आपने " + (10 - attempts) + " कोशिशों में जीत लिया!";
-        gameOver = true;
-        gameCard.classList.add("won");
-        input.disabled = true;
-        form.querySelector("button").disabled = true;
-        form.querySelector("button").style.opacity = "0.5";
-      } else if (attempts === 0) {
-        message.textContent =
-          "😅 गेम खत्म! सही नंबर " + secretNumber +
-          " था। नया गेम खेलकर फिर कोशिश करें।";
-        gameOver = true;
-        input.disabled = true;
-        form.querySelector("button").disabled = true;
-        form.querySelector("button").style.opacity = "0.5";
-      } else if (guess < secretNumber) {
-        message.textContent =
-          "📈 आपका नंबर छोटा है! इससे बड़ा नंबर आज़माएँ।";
-      } else {
-        message.textContent =
-          "📉 आपका नंबर बड़ा है! इससे छोटा नंबर आज़माएँ।";
-      }
-
-      if (!gameOver) {
-        input.value = "";
-        input.focus();
-      }
-    });
-
-    restartButton.addEventListener("click", startGame);
-
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-
-    startGame();
-  </script>
-
+/* ===== HUB UI ===== */
+function render(){GAMES.forEach(g=>{const a=document.createElement("article");a.className="card";
+  a.innerHTML='<div class="thumb" style="--a:'+g.a+';--b:'+g.b+'"><i>'+g.cat+'</i>'+g.emoji+'</div><div class="b"><h3>'+g.title+'</h3><p>'+g.desc+'</p><small>🧊 3D · 🏆 Hi-score · 📈 Levels · 🔊 Sound</small><button>Play Now ▶</button></div>';
+  a.querySelector("button").onclick=()=>start(g.id);$("grid").appendChild(a)})}
+function stop(){cleanup.forEach(f=>f());cleanup=[]}
+function start(id){stop();const g=GAMES.find(z=>z.id==id);$("play").style.display="block";$("title").textContent=g.emoji+" "+g.title;
+  $("screen").innerHTML="";Arc3($("screen"),id,g.G);$("play").scrollIntoView({behavior:"smooth",block:"start"})}
+$("close").onclick=()=>{stop();$("screen").innerHTML="";$("play").style.display="none"};
+$("gc").textContent=GAMES.length;$("yr").textContent=new Date().getFullYear();render();
+</script>
 </body>
+</html>
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050816">
+<title>Neon Arcade X | Futuristic Games</title>
+<style>
+:root{--cyan:#61f5ff;--pink:#ff4dd8;--purple:#a78bfa;--text:#f5f7ff;--muted:#a9b4d8}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;color:var(--text);min-height:100vh;
+background:radial-gradient(circle at 20% 0,#2b1b6b,transparent 45%),radial-gradient(circle at 90% 30%,#0b3b5a,transparent 40%),#050816}
+header{padding:20px 14px;text-align:center;border-bottom:1px solid #61f5ff30}
+.logo{font-size:clamp(24px,5vw,36px);font-weight:900;letter-spacing:2px;color:var(--cyan);text-shadow:0 0 20px #00e5ff,0 0 40px #ff4dd860}
+header p{color:var(--muted);margin:6px 0 0}
+main{width:min(1050px,94%);margin:24px auto}
+.stats{display:flex;gap:12px;justify-content:center;margin:0 0 22px}
+.stat{background:#0d1230;border:1px solid #61f5ff40;padding:12px 22px;border-radius:14px;text-align:center;min-width:130px;box-shadow:0 0 18px #61f5ff18}
+.stat small{display:block;color:var(--muted);margin-bottom:6px}
+.stat strong{color:var(--cyan);font-size:24px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:#0d1230;border:1px solid #ffffff1c;border-radius:20px;overflow:hidden;transition:.2s;text-align:center}
+.card:hover{transform:translateY(-4px);border-color:var(--cyan);box-shadow:0 0 24px #61f5ff30}
+.thumb{height:120px;display:flex;align-items:center;justify-content:center;font-size:56px;position:relative;
+background-image:linear-gradient(135deg,var(--a),var(--b))}
+.thumb i{position:absolute;top:9px;left:9px;font-style:normal;font-size:11px;background:#000a;padding:3px 9px;border-radius:20px}
+.card .b{padding:14px}
+.card h3{margin:0 0 6px;font-size:18px}
+.card p{margin:0 0 6px;color:var(--muted);font-size:13px;line-height:1.5;min-height:40px}
+.card small{display:block;color:var(--cyan);font-size:11px;margin-bottom:10px}
+button{border:0;border-radius:12px;padding:12px 16px;margin-top:6px;font-weight:800;font-size:14px;cursor:pointer;
+background:linear-gradient(90deg,#8b73ff,#45e5f1);color:#060a1e}
+button:hover{filter:brightness(1.12)}
+button:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.card button{width:100%;margin:0}
+.secondary{background:#303755;color:#fff}
+#play{margin-top:26px;padding:20px;background:#0a0f28f0;border:1px solid #a78bfa80;border-radius:22px;display:none;box-shadow:0 0 40px #a78bfa30}
+#play h2{text-align:center;margin:0 0 8px}
+#screen{max-width:420px;margin:auto;text-align:center}
+.hint{color:var(--muted);line-height:1.6;font-size:14px;margin:6px 0}
+.hud{display:flex;justify-content:space-between;gap:8px;background:#0d1230;border:1px solid #61f5ff40;border-radius:12px;padding:8px 14px;font-weight:700}
+canvas{display:block;width:min(100%,360px);height:auto;margin:12px auto;border:1px solid #61f5ff80;border-radius:12px;
+box-shadow:0 0 28px #61f5ff40;touch-action:none;user-select:none;-webkit-user-select:none;cursor:crosshair}
+.row{display:flex;justify-content:center;flex-wrap:wrap;gap:8px}
+footer{text-align:center;padding:24px 10px;margin-top:30px;border-top:1px solid #ffffff18;color:var(--muted);font-size:13px}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.grid{grid-template-columns:1fr}.stat{min-width:0;flex:1}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header><div class="logo">⚡ NEON ARCADE X</div><p>Futuristic games · Levels · Hi-score · Sound</p></header>
+<main>
+  <div class="stats">
+    <div class="stat"><small>गेम खेले</small><strong id="tg">0</strong></div>
+    <div class="stat"><small>कुल पॉइंट्स</small><strong id="tp">0</strong></div>
+    <div class="stat"><small>कुल गेम</small><strong id="gc">0</strong></div>
+  </div>
+  <section class="grid" id="grid"></section>
+  <section id="play">
+    <h2 id="title"></h2>
+    <div id="screen"></div>
+    <div class="row" style="margin-top:14px"><button class="secondary" id="close">✖ गेम बंद करें</button></div>
+  </section>
+</main>
+<footer>© <span id="yr"></span> Neon Arcade X · Made for fun ❤️</footer>
 
+<script>
+const $=id=>document.getElementById(id),R=(a,b)=>a+Math.random()*(b-a);
+const W=360,H=480;
+let games=0,pts=0,cleanup=[],mute=false,ac;const played=new Set();
+function score(n,p){if(!played.has(n)){played.add(n);games++}pts+=p;$("tg").textContent=games;$("tp").textContent=pts}
+function beep(f,d=.08,t="square"){if(mute)return;try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();const o=ac.createOscillator(),g=ac.createGain();o.type=t;o.frequency.value=f;g.gain.value=.05;o.connect(g);g.connect(ac.destination);o.start();o.stop(ac.currentTime+d)}catch(e){}}
+function K(f){document.addEventListener("keydown",f);cleanup.push(()=>document.removeEventListener("keydown",f))}
+function hiGet(id){try{return+localStorage.getItem("nax_"+id)||0}catch(e){return 0}}
+function hiSet(id,v){try{localStorage.setItem("nax_"+id,v)}catch(e){}}
+
+/* ===== SHARED ARCADE ENGINE: HUD, levels, lives, hi-score, sound, particles, pause, touch+keyboard ===== */
+function Arc(el,id,G){
+  el.innerHTML='<p class="hint">'+G.hint+'</p><div class="hud"><span>⭐ <b id="sc">0</b></span><span>🏆 <b id="hi">0</b></span><span id="lv"></span><span>LV <b id="lvl">1</b></span></div><canvas width="360" height="480"></canvas><div class="row"><button id="go">▶ Start / Restart</button><button class="secondary" id="ps">⏸ Pause</button><button class="secondary" id="mu">'+(mute?"🔇":"🔊")+'</button></div>';
+  const c=el.querySelector("canvas"),x=c.getContext("2d"),q=s=>el.querySelector(s);
+  const S={hi:hiGet(id),run:false,over:false,started:false,P:[],px:180,py:400,down:false,tap:false,score:0,lives:3,level:1};
+  const stars=Array.from({length:45},()=>({x:R(0,W),y:R(0,H),s:R(.3,1.4)}));
+  S.fx=(X,Y,col,n=12)=>{for(let i=0;i<n;i++)S.P.push({x:X,y:Y,vx:R(-3,3),vy:R(-3,3),l:1,c:col})};
+  S.add=p=>{S.score+=p;S.level=1+Math.floor(S.score/G.lvl)};
+  S.end=()=>{if(S.over)return;S.run=false;S.over=true;if(S.score>S.hi){S.hi=S.score;hiSet(id,S.hi)}score(id,S.score);beep(90,.4,"sawtooth")};
+  S.hurt=(X,Y)=>{S.lives--;S.fx(X,Y,"#ff4d6d",18);beep(130,.2,"sawtooth");if(S.lives<=0)S.end()};
+  const pos=e=>{const r=c.getBoundingClientRect();S.px=(e.clientX-r.left)/r.width*W;S.py=(e.clientY-r.top)/r.height*H};
+  c.onpointermove=pos;c.onpointerdown=e=>{pos(e);S.down=true;S.tap=true};c.onpointerup=c.onpointerleave=()=>S.down=false;
+  K(e=>{const m={ArrowLeft:[-22,0],ArrowRight:[22,0],ArrowUp:[0,-22],ArrowDown:[0,22]}[e.key];
+    if(m){e.preventDefault();S.px=Math.max(0,Math.min(W,S.px+m[0]));S.py=Math.max(0,Math.min(H,S.py+m[1]));if(e.key=="ArrowUp")S.tap=true}
+    if(e.key==" "){e.preventDefault();S.tap=true}});
+  q("#go").onclick=()=>{Object.assign(S,{score:0,lives:3,level:1,over:false,run:true,started:true,P:[],tap:false});G.init(S)};
+  q("#ps").onclick=()=>{if(S.started&&!S.over)S.run=!S.run};
+  q("#mu").onclick=e=>{mute=!mute;e.target.textContent=mute?"🔇":"🔊"};
+  let last=performance.now(),raf;
+  const loop=t=>{raf=requestAnimationFrame(loop);const d=Math.min((t-last)/1000,.05)*60;last=t;
+    x.fillStyle="#070a1a";x.fillRect(0,0,W,H);x.fillStyle="#fff";
+    stars.forEach(s=>{if(S.run)s.y=(s.y+s.s*d)%H;x.globalAlpha=.3+s.s/3;x.fillRect(s.x,s.y,1.6,1.6)});x.globalAlpha=1;
+    if(S.started){if(S.run)G.update(S,d);G.draw(x,S)}
+    S.tap=false;x.shadowBlur=0;
+    S.P.forEach(p=>{p.x+=p.vx*d;p.y+=p.vy*d;p.l-=.03*d;x.globalAlpha=Math.max(p.l,0);x.fillStyle=p.c;x.fillRect(p.x,p.y,3,3)});
+    x.globalAlpha=1;S.P=S.P.filter(p=>p.l>0);
+    if(!S.run){x.fillStyle="#000a";x.fillRect(0,0,W,H);x.textAlign="center";x.fillStyle="#61f5ff";x.font="bold 26px Arial";
+      x.fillText(S.over?"💥 GAME OVER":S.started?"⏸ PAUSED":"▶ Start दबाएँ",W/2,H/2);
+      if(S.over){x.font="18px Arial";x.fillStyle="#fff";x.fillText("स्कोर: "+S.score+(S.score>=S.hi&&S.score?"  🏆 नया रिकॉर्ड!":""),W/2,H/2+34)}}
+    q("#sc").textContent=S.score;q("#hi").textContent=S.hi;q("#lvl").textContent=S.level;q("#lv").textContent="❤️".repeat(Math.max(S.lives,0))};
+  raf=requestAnimationFrame(loop);cleanup.push(()=>cancelAnimationFrame(raf));
+}
+
+/* ===== GAME REGISTRY — नया गेम = add(...) की एक एंट्री: {lvl, hint, init(S), update(S,d), draw(x,S)} ===== */
+const GAMES=[];
+const add=(id,title,emoji,desc,cat,a,b,G)=>GAMES.push({id,title,emoji,desc,cat,a,b,G});
+
+/* 1 NEON FLYER */
+add("flyer","Neon Flyer","🐦","टैप करके उड़ें, पाइप से बचें और सिक्के इकट्ठा करें।","Arcade","#06b6d4","#7c3aed",{lvl:10,hint:"टैप / Space / ⬆️ से उड़ें। 🪙 = +5",
+ init(S){S.y=240;S.vy=0;S.pipes=[];S.tm=30;S.lives=1},
+ update(S,d){
+  if(S.tap){S.vy=-6;beep(520,.05)}
+  S.vy+=.3*d;S.y+=S.vy*d;
+  if(Math.random()<.5*d)S.P.push({x:90,y:S.y,vx:-1.5,vy:R(-.5,.5),l:.6,c:"#ffd166"});
+  S.tm-=d;if(S.tm<=0){const g=Math.max(105,150-S.level*5);S.tm=Math.max(60,95-S.level*3);S.pipes.push({x:370,g,gy:R(70,H-70-g),ok:false,coin:Math.random()<.5})}
+  const sp=2.6+S.level*.2;
+  S.pipes.forEach(p=>{p.x-=sp*d;
+   if(!p.ok&&p.x+46<90){p.ok=true;S.add(1);beep(800,.05)}
+   if(p.coin){const cx=p.x+23,cy=p.gy+p.g/2;if(Math.hypot(cx-90,cy-S.y)<22){p.coin=false;S.add(5);beep(1100,.1,"triangle");S.fx(cx,cy,"#ffd166")}}
+   if(98>p.x&&82<p.x+46&&(S.y-11<p.gy||S.y+11>p.gy+p.g)){S.fx(90,S.y,"#ff4d6d",25);S.end()}});
+  S.pipes=S.pipes.filter(p=>p.x>-60);
+  if(S.y>H||S.y<0){S.fx(90,Math.min(Math.max(S.y,0),H),"#ff4d6d",25);S.end()}},
+ draw(x,S){S.pipes.forEach(p=>{x.fillStyle="#22d3ee";x.shadowColor="#22d3ee";x.shadowBlur=12;x.fillRect(p.x,0,46,p.gy);x.fillRect(p.x,p.gy+p.g,46,H);
+   if(p.coin){x.shadowBlur=0;x.font="22px Arial";x.textAlign="center";x.fillText("🪙",p.x+23,p.gy+p.g/2+8)}});
+  x.shadowBlur=0;x.font="30px Arial";x.textAlign="center";x.fillText("🐦",90,S.y+10)}});
+
+/* 2 SPACE DEFENDER */
+add("space","Space Defender","🚀","एलियन से धरती बचाएँ, पावर-अप लें।","Shooter","#4f46e5","#0ea5e9",{lvl:60,hint:"उंगली/माउस से जहाज़ घुमाएँ, फायर अपने-आप होता है। ⚡ = ट्रिपल शॉट",
+ init(S){S.sx=180;S.b=[];S.e=[];S.u=[];S.cd=0;S.pw=0},
+ update(S,d){
+  S.sx+=(S.px-S.sx)*.25*d;S.cd-=d;S.pw-=d;
+  if(S.cd<=0){S.cd=14;S.b.push({x:S.sx,y:425});if(S.pw>0)S.b.push({x:S.sx-14,y:432},{x:S.sx+14,y:432});beep(900,.03)}
+  if(Math.random()<(.02+S.level*.004)*d)S.e.push({x:R(20,340),y:-20,hp:S.level>2&&Math.random()<.3?2:1,v:1+S.level*.15+R(0,1)});
+  S.b.forEach(b=>b.y-=8*d);S.b=S.b.filter(b=>b.y>-10);
+  S.e.forEach(e=>{e.y+=e.v*d;
+   S.b.forEach(b=>{if(!b.dead&&!e.dead&&Math.hypot(b.x-e.x,b.y-e.y)<20){b.dead=1;e.hp--;S.fx(b.x,b.y,"#fff",3)}});
+   if(e.hp<=0&&!e.dead){e.dead=1;S.add(5);S.fx(e.x,e.y,"#c084fc",14);beep(300,.08);if(Math.random()<.12)S.u.push({x:e.x,y:e.y})}
+   else if(!e.dead&&(e.y>465||Math.hypot(e.x-S.sx,e.y-440)<24)){e.dead=1;S.hurt(e.x,e.y)}});
+  S.b=S.b.filter(b=>!b.dead);S.e=S.e.filter(e=>!e.dead);
+  S.u.forEach(u=>{u.y+=2*d;if(Math.hypot(u.x-S.sx,u.y-440)<26){u.y=999;S.pw=600;beep(1200,.15,"triangle")}});S.u=S.u.filter(u=>u.y<500)},
+ draw(x,S){x.fillStyle="#ffd166";S.b.forEach(b=>x.fillRect(b.x-2,b.y,4,12));
+  x.font="28px Arial";x.textAlign="center";S.e.forEach(e=>x.fillText(e.hp>1?"👹":"👾",e.x,e.y+9));S.u.forEach(u=>x.fillText("⚡",u.x,u.y+9));
+  x.fillStyle="#61f5ff";x.shadowColor="#61f5ff";x.shadowBlur=14;x.beginPath();x.moveTo(S.sx,418);x.lineTo(S.sx-17,452);x.lineTo(S.sx+17,452);x.fill()}});
+
+/* 3 NEON BREAKOUT */
+const BC=["#ff4d6d","#ff9f1c","#ffd166","#06d6a0","#61f5ff"];
+const bricks=()=>{const a=[];for(let r=0;r<5;r++)for(let c=0;c<8;c++)a.push({x:10+c*43,y:50+r*22,w:40,h:16,r});return a};
+add("break","Neon Breakout","🧱","गेंद से सारी ईंटें तोड़ें, हर राउंड तेज़!","Arcade","#f43f5e","#f59e0b",{lvl:400,hint:"पैडल घुमाएँ। टैप / Space से गेंद छोड़ें।",
+ init(S){S.sp=4;S.bx=180;S.by=428;S.vx=0;S.vy=0;S.wait=true;S.pw=64;S.pad=180;S.br=bricks()},
+ update(S,d){
+  S.pad+=(S.px-S.pad)*.3*d;S.pad=Math.max(32,Math.min(328,S.pad));
+  if(S.wait){S.bx=S.pad;S.by=428;if(S.tap){S.wait=false;S.vx=R(-2,2);S.vy=-S.sp}return}
+  S.bx+=S.vx*d;S.by+=S.vy*d;
+  if(S.bx<6||S.bx>354){S.vx*=-1;S.bx=Math.max(6,Math.min(354,S.bx))}
+  if(S.by<6){S.vy=Math.abs(S.vy);beep(300,.03)}
+  if(S.vy>0&&S.by>430&&S.by<446&&Math.abs(S.bx-S.pad)<S.pw/2+6){S.vy=-S.sp;S.vx=(S.bx-S.pad)/(S.pw/2)*5;beep(400,.04)}
+  for(const b of S.br)if(S.bx>b.x-6&&S.bx<b.x+b.w+6&&S.by>b.y-6&&S.by<b.y+b.h+6){S.br.splice(S.br.indexOf(b),1);S.vy*=-1;S.add(10);S.fx(b.x+20,b.y+8,BC[b.r]);beep(600+b.r*60,.05);break}
+  if(!S.br.length){S.br=bricks();S.sp+=.6;S.wait=true;beep(1000,.2,"triangle")}
+  if(S.by>H){S.hurt(S.bx,H-10);S.wait=true}},
+ draw(x,S){S.br.forEach(b=>{x.fillStyle=BC[b.r];x.shadowColor=BC[b.r];x.shadowBlur=8;x.fillRect(b.x,b.y,b.w,b.h)});
+  x.fillStyle="#fff";x.shadowColor="#61f5ff";x.shadowBlur=14;x.fillRect(S.pad-S.pw/2,440,S.pw,10);
+  x.beginPath();x.arc(S.bx,S.by,6,0,7);x.fill()}});
+
+/* 4 STAR CATCHER */
+add("orb","Star Catcher","⭐","तारे पकड़ें और लाल ऑर्ब से बचें।","Action","#f59e0b","#ec4899",{lvl:30,hint:"उंगली/माउस से जहाज़ चलाएँ। ⭐ पकड़ें, 🔴 से बचें।",
+ init(S){S.x=180;S.y=400;S.o=[];S.s=[];S.inv=0},
+ update(S,d){
+  S.x+=(S.px-S.x)*.2*d;S.y+=(S.py-S.y)*.2*d;S.inv-=d;
+  if(Math.random()<.025*d)S.s.push({x:R(20,340),y:-10,v:R(1.5,3)});
+  if(Math.random()<(.03+S.level*.006)*d)S.o.push({x:R(10,350),y:-12,vx:R(-1,1),v:R(1.8,3)+S.level*.2,r:R(9,15)});
+  S.s.forEach(s=>{s.y+=s.v*d;if(Math.hypot(s.x-S.x,s.y-S.y)<22){s.y=999;S.add(3);S.fx(S.x,S.y,"#ffd166");beep(1000,.06,"triangle")}});
+  S.o.forEach(o=>{o.x+=o.vx*d;o.y+=o.v*d;if(S.inv<=0&&Math.hypot(o.x-S.x,o.y-S.y)<o.r+10){o.y=999;S.inv=90;S.hurt(S.x,S.y)}});
+  S.s=S.s.filter(s=>s.y<500);S.o=S.o.filter(o=>o.y<500)},
+ draw(x,S){x.font="22px Arial";x.textAlign="center";S.s.forEach(s=>x.fillText("⭐",s.x,s.y+8));
+  x.fillStyle="#ff2d55";x.shadowColor="#ff2d55";x.shadowBlur=16;S.o.forEach(o=>{x.beginPath();x.arc(o.x,o.y,o.r,0,7);x.fill()});
+  if(S.inv>0&&Math.floor(S.inv/6)%2)return;
+  x.fillStyle="#61f5ff";x.shadowColor="#61f5ff";x.beginPath();x.arc(S.x,S.y,10,0,7);x.fill();x.strokeStyle="#fff";x.beginPath();x.arc(S.x,S.y,16,0,7);x.stroke()}});
+
+/* 5 STACK TOWER */
+add("stack","Stack Tower","🏗️","सही समय पर टैप करें, सबसे ऊँचा टावर बनाएँ।","Skill","#10b981","#3b82f6",{lvl:10,hint:"ब्लॉक गिराने के लिए टैप / Space। परफेक्ट = कॉम्बो + बड़ा ब्लॉक!",
+ init(S){S.lives=1;S.bl=[{x:100,w:160}];S.cb=0;S.cur={x:0,w:160,dir:1};S.cam=0},
+ update(S,d){const c=S.cur,t=S.bl[S.bl.length-1],yy=()=>H-60-S.bl.length*22+S.cam;
+  c.x+=c.dir*(2.2+S.level*.45)*d;if(c.x<0){c.x=0;c.dir=1}if(c.x+c.w>W){c.x=W-c.w;c.dir=-1}
+  S.cam+=(Math.max(0,S.bl.length-9)*22-S.cam)*.1*d;
+  if(S.tap){const l=Math.max(c.x,t.x),ov=Math.min(c.x+c.w,t.x+t.w)-l;
+   if(ov<=0){S.fx(c.x+c.w/2,yy(),"#ff4d6d",25);S.end();return}
+   let nx=l,nw=ov;
+   if(Math.abs(c.x-t.x)<5){nw=Math.min(t.w+(S.cb>=2?8:0),W-40);nx=Math.min(t.x,W-nw);S.cb++;S.add(3);beep(900+S.cb*60,.1,"triangle");S.fx(nx+nw/2,yy(),"#ffd166",14)}
+   else{S.cb=0;S.add(1);beep(400,.06)}
+   S.bl.push({x:nx,w:nw});S.cur={x:c.dir>0?0:W-nw,w:nw,dir:c.dir}}},
+ draw(x,S){const all=[...S.bl,S.cur];all.forEach((b,i)=>{x.fillStyle="hsl("+((i*14+180)%360)+" 90% 60%)";x.shadowColor=x.fillStyle;x.shadowBlur=8;x.fillRect(b.x,H-60-i*22+S.cam,b.w,20)});
+  x.shadowBlur=0;x.fillStyle="#fff";x.font="bold 14px Arial";x.textAlign="center";if(S.cb>1)x.fillText("🔥 कॉम्बो x"+S.cb,W/2,30)}});
+
+/* 6 FRUIT SLICE */
+const FR=["🍉","🍎","🍊","🍋","🍇","🍓","🍍"];
+add("fruit","Fruit Slice","🍉","स्वाइप करके फल काटें, बम से बचें!","Action","#22c55e","#ef4444",{lvl:15,hint:"उंगली/माउस दबाकर फलों पर स्वाइप करें। 💣 मत काटें! फल गिरा तो ❤️ कम।",
+ init(S){S.f=[];S.tr=[];S.tm=20},
+ update(S,d){
+  S.tm-=d;if(S.tm<=0){S.tm=Math.max(22,55-S.level*3);const b=Math.random()<.15+Math.min(S.level*.01,.1);
+   S.f.push({x:R(50,310),y:510,vx:R(-1.5,1.5),vy:-R(11,13.5),e:b?"💣":FR[Math.floor(R(0,FR.length))],b})}
+  if(S.down){S.tr.push({x:S.px,y:S.py});if(S.tr.length>9)S.tr.shift()}else S.tr=[];
+  S.f.forEach(f=>{f.x+=f.vx*d;f.vy+=.22*d;f.y+=f.vy*d;
+   if(S.down&&!f.dead&&Math.hypot(S.px-f.x,S.py-f.y)<34){f.dead=1;if(f.b)S.hurt(f.x,f.y);else{S.add(1);S.fx(f.x,f.y,"#ff9f1c",14);beep(700+R(0,300),.06,"triangle")}}
+   else if(f.y>520&&f.vy>0&&!f.dead){f.dead=1;if(!f.b)S.hurt(f.x,470)}});
+  S.f=S.f.filter(f=>!f.dead)},
+ draw(x,S){x.font="42px Arial";x.textAlign="center";S.f.forEach(f=>x.fillText(f.e,f.x,f.y+14));
+  if(S.tr.length>1){x.strokeStyle="#fff";x.lineWidth=4;x.shadowColor="#61f5ff";x.shadowBlur=14;x.beginPath();S.tr.forEach((p,i)=>i?x.lineTo(p.x,p.y):x.moveTo(p.x,p.y));x.stroke();x.lineWidth=1}}});
+
+/* ===== HUB UI ===== */
+function render(){GAMES.forEach(g=>{const a=document.createElement("article");a.className="card";
+  a.innerHTML='<div class="thumb" style="--a:'+g.a+';--b:'+g.b+'"><i>'+g.cat+'</i>'+g.emoji+'</div><div class="b"><h3>'+g.title+'</h3><p>'+g.desc+'</p><small>🏆 Hi-score · 📈 Levels · 🔊 Sound</small><button>Play Now ▶</button></div>';
+  a.querySelector("button").onclick=()=>start(g.id);$("grid").appendChild(a)})}
+function stop(){cleanup.forEach(f=>f());cleanup=[]}
+function start(id){stop();const g=GAMES.find(z=>z.id==id);$("play").style.display="block";$("title").textContent=g.emoji+" "+g.title;
+  $("screen").innerHTML="";Arc($("screen"),id,g.G);$("play").scrollIntoView({behavior:"smooth",block:"start"})}
+$("close").onclick=()=>{stop();$("screen").innerHTML="";$("play").style.display="none"};
+$("gc").textContent=GAMES.length;$("yr").textContent=new Date().getFullYear();render();
+</script>
+</body>
+</html>
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -418,96 +419,70 @@
 <meta name="theme-color" content="#090d20">
 <title>Neon Game Zone | Online Games</title>
 <style>
-:root {
-  --bg:#080b18; --panel:#151b32; --cyan:#61f5ff;
-  --purple:#a78bfa; --text:#f5f7ff; --muted:#b8c2e2;
-}
-* { box-sizing:border-box; }
-body {
-  margin:0; font-family:Arial,sans-serif; color:var(--text);
-  background:radial-gradient(ellipse at top,#25265b,transparent 55%),
-             linear-gradient(140deg,#080b18,#14102b,#071827);
-  min-height:100vh;
-}
-header {
-  padding:22px 14px; text-align:center;
-  border-bottom:1px solid #ffffff20;
-}
-.logo { font-size:clamp(23px,5vw,34px); font-weight:900;
-  color:var(--cyan); text-shadow:0 0 18px #00d9ff60; }
-header p { color:var(--muted); margin-bottom:0; }
-main { width:min(1050px,94%); margin:30px auto; }
-.hero { text-align:center; margin-bottom:30px; }
-.hero h1 { font-size:clamp(30px,6vw,49px); margin-bottom:10px; }
-.hero h1 span { color:var(--purple); }
-.hero p { color:var(--muted); line-height:1.7; }
-.pill { display:inline-block; background:#202647; color:var(--cyan);
-  padding:8px 14px; border-radius:30px; font-size:13px; }
-.stats { display:flex; gap:12px; justify-content:center; margin:22px 0; }
-.stat { background:#171d36; border:1px solid #ffffff15;
-  padding:12px 20px; border-radius:14px; text-align:center; min-width:115px; }
-.stat small { display:block; color:var(--muted); margin-bottom:7px; }
-.stat strong { color:var(--cyan); font-size:23px; }
-h2 { margin-top:0; }
-.game-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
-.game-card {
-  background:#151b32eF; border:1px solid #ffffff18; border-radius:18px;
-  padding:19px 12px; text-align:center; transition:.2s;
-}
-.game-card:hover { transform:translateY(-4px); border-color:var(--cyan); }
-.game-card .emoji { font-size:39px; }
-.game-card h3 { font-size:16px; margin:12px 0 7px; }
-.game-card p { font-size:13px; line-height:1.5; color:var(--muted); min-height:38px; }
-button {
-  border:0; border-radius:11px; padding:12px 15px; margin-top:7px;
-  font-weight:800; font-size:14px; cursor:pointer;
-  background:linear-gradient(90deg,#8b73ff,#45e5f1); color:#080d21;
-}
-button:hover { filter:brightness(1.1); }
-button:focus-visible { outline:2px solid white; outline-offset:3px; }
-.secondary { background:#303755; color:white; }
-.game-card button { width:100%; }
-#playArea {
-  margin-top:28px; padding:23px; background:#12182eeF;
-  border:1px solid #8174ff70; border-radius:22px; display:none;
-}
-#playArea h2 { text-align:center; }
-.game-screen { display:none; max-width:600px; margin:auto; text-align:center; }
-.game-screen.active { display:block; }
-.hint { color:var(--muted); line-height:1.7; }
-input {
-  width:100%; padding:14px; margin-top:10px; border-radius:10px;
-  background:#080e22; border:1px solid #59638f; color:white;
-  font-size:18px; text-align:center;
-}
-#snakeCanvas {
-  display:block; width:min(100%,400px); height:auto;
-  margin:16px auto; background:#080d1c;
-  border:1px solid #61f5ff70; border-radius:8px;
-}
-.controls { display:grid; grid-template-columns:repeat(3,58px);
-  justify-content:center; gap:5px; margin-top:12px; }
-.controls button { margin:0; padding:12px 5px; }
-.controls button:nth-child(1) { grid-column:2; }
-.controls button:nth-child(2) { grid-column:1; grid-row:2; }
-.controls button:nth-child(3) { grid-column:2; grid-row:2; }
-.controls button:nth-child(4) { grid-column:3; grid-row:2; }
-.action-row { display:flex; justify-content:center; flex-wrap:wrap; gap:8px; }
-.action-row button { min-width:100px; }
-.choice { font-size:35px; min-width:75px; }
-#feedback { min-height:28px; margin:15px 0; line-height:1.6; }
-.quiz-option { display:block; width:100%; margin:9px 0; }
-footer { text-align:center; padding:24px 10px; margin-top:35px;
-  border-top:1px solid #ffffff18; color:var(--muted); font-size:13px; }
-@media(max-width:720px) {
-  .game-grid { grid-template-columns:repeat(2,1fr); }
-  .stats { gap:7px; }
-  .stat { min-width:0; flex:1; padding:12px 5px; }
-  #playArea { padding:16px 12px; }
-}
-@media(max-width:360px) {
-  .game-grid { grid-template-columns:1fr; }
-}
+:root{--bg:#080b18;--panel:#151b32;--cyan:#61f5ff;--purple:#a78bfa;--text:#f5f7ff;--muted:#b8c2e2}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;color:var(--text);min-height:100vh;
+background:radial-gradient(ellipse at top,#25265b,transparent 55%),linear-gradient(140deg,#080b18,#14102b,#071827)}
+header{padding:20px 14px;text-align:center;border-bottom:1px solid #ffffff20}
+.logo{font-size:clamp(23px,5vw,34px);font-weight:900;color:var(--cyan);text-shadow:0 0 18px #00d9ff60}
+header p{color:var(--muted);margin:6px 0 0}
+main{width:min(1100px,94%);margin:26px auto}
+.hero{text-align:center;margin-bottom:22px}
+.hero h1{font-size:clamp(28px,6vw,46px);margin:12px 0 8px}
+.hero h1 span{color:var(--purple)}
+.hero p{color:var(--muted);line-height:1.7;margin:0}
+.pill{display:inline-block;background:#202647;color:var(--cyan);padding:8px 14px;border-radius:30px;font-size:13px}
+.stats{display:flex;gap:12px;justify-content:center;margin:18px 0}
+.stat{background:#171d36;border:1px solid #ffffff15;padding:12px 20px;border-radius:14px;text-align:center;min-width:115px}
+.stat small{display:block;color:var(--muted);margin-bottom:6px}
+.stat strong{color:var(--cyan);font-size:23px}
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+#search{flex:1;min-width:180px;padding:12px;border-radius:10px;background:#080e22;border:1px solid #59638f;color:#fff;font-size:15px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tabs button{margin:0;padding:9px 13px;background:#303755;color:#fff;font-size:13px}
+.tabs button.on{background:linear-gradient(90deg,#8b73ff,#45e5f1);color:#080d21}
+.game-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.game-card{background:#151b32;border:1px solid #ffffff18;border-radius:18px;overflow:hidden;text-align:center;transition:.2s}
+.game-card:hover{transform:translateY(-4px);border-color:var(--cyan)}
+.thumb{height:104px;display:flex;align-items:center;justify-content:center;font-size:48px;position:relative}
+.thumb i{position:absolute;top:8px;left:8px;font-style:normal;font-size:11px;background:#000000a0;padding:3px 8px;border-radius:20px}
+.game-card .body{padding:12px}
+.game-card h3{font-size:16px;margin:0 0 6px}
+.game-card p{font-size:13px;line-height:1.5;color:var(--muted);min-height:40px;margin:0 0 8px}
+button{border:0;border-radius:11px;padding:12px 15px;margin-top:7px;font-weight:800;font-size:14px;cursor:pointer;background:linear-gradient(90deg,#8b73ff,#45e5f1);color:#080d21}
+button:hover{filter:brightness(1.1)}
+button:focus-visible,input:focus-visible{outline:2px solid #fff;outline-offset:3px}
+button:disabled{opacity:.5;cursor:default}
+.secondary{background:#303755;color:#fff}
+.game-card button{width:100%;margin:0}
+#playArea{margin-top:26px;padding:22px;background:#12182eee;border:1px solid #8174ff70;border-radius:22px;display:none}
+#playArea h2{text-align:center;margin-top:0}
+#screen{max-width:600px;margin:auto;text-align:center}
+.hint{color:var(--muted);line-height:1.7}
+input.f{width:100%;padding:14px;margin-top:10px;border-radius:10px;background:#080e22;border:1px solid #59638f;color:#fff;font-size:18px;text-align:center}
+canvas{display:block;width:min(100%,360px);height:auto;margin:14px auto;background:#080d1c;border:1px solid #61f5ff70;border-radius:8px;touch-action:none}
+.pad{display:grid;grid-template-columns:repeat(3,58px);justify-content:center;gap:5px;margin-top:10px}
+.pad button{margin:0;padding:12px 5px}
+.pad button:nth-child(1){grid-column:2}
+.pad button:nth-child(2){grid-column:1;grid-row:2}
+.pad button:nth-child(3){grid-column:2;grid-row:2}
+.pad button:nth-child(4){grid-column:3;grid-row:2}
+.row{display:flex;justify-content:center;flex-wrap:wrap;gap:8px}
+.big{font-size:34px;min-width:72px}
+.fb{min-height:28px;margin:12px 0;line-height:1.6}
+.opt{display:block;width:100%;margin:8px 0}
+.board{display:grid;gap:8px;margin:14px auto;max-width:320px}
+.board button{margin:0;aspect-ratio:1;font-size:30px;padding:0}
+.t3{grid-template-columns:repeat(3,1fr)}
+.mem{grid-template-columns:repeat(4,1fr)}
+.mole{grid-template-columns:repeat(3,1fr)}
+.mole button{font-size:38px;background:#2a2150}
+#reactBox{height:200px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;cursor:pointer;user-select:none;background:#8b2f45;margin:14px 0}
+footer{text-align:center;padding:24px 10px;margin-top:34px;border-top:1px solid #ffffff18;color:var(--muted);font-size:13px}
+@media(max-width:820px){.game-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.stats{gap:7px}.stat{min-width:0;flex:1;padding:12px 5px}#playArea{padding:16px 12px}}
+@media(max-width:360px){.game-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
@@ -515,356 +490,174 @@ footer { text-align:center; padding:24px 10px; margin-top:35px;
   <div class="logo">⚡ NEON GAME ZONE</div>
   <p>Play Smart. Have Fun!</p>
 </header>
-
 <main>
   <section class="hero">
     <span class="pill">🎮 FREE BROWSER GAMES</span>
     <h1>Welcome to <span>Game Zone</span></h1>
-    <p>अपना पसंदीदा गेम चुनें, अपना स्कोर बढ़ाएँ और मज़े करें!<br>
-    बिना डाउनलोड किए सीधे ब्राउज़र में खेलें।</p>
+    <p>अपना पसंदीदा गेम चुनें, स्कोर बढ़ाएँ और मज़े करें!<br>बिना डाउनलोड किए सीधे ब्राउज़र में खेलें।</p>
   </section>
-
   <div class="stats">
     <div class="stat"><small>गेम खेले</small><strong id="totalGames">0</strong></div>
     <div class="stat"><small>कुल पॉइंट्स</small><strong id="totalScore">0</strong></div>
+    <div class="stat"><small>कुल गेम</small><strong id="gameCount">0</strong></div>
   </div>
-
-  <h2>🔥 गेम कलेक्शन</h2>
-  <section class="game-grid">
-    <article class="game-card">
-      <div class="emoji">🐍</div><h3>Snake Game</h3>
-      <p>खाना खाएँ और साँप को बड़ा बनाएँ।</p>
-      <button onclick="openGame('snake')">Play Now ▶</button>
-    </article>
-    <article class="game-card">
-      <div class="emoji">🎯</div><h3>Number Guess</h3>
-      <p>10 कोशिशों में सही नंबर खोजें।</p>
-      <button onclick="openGame('guess')">Play Now ▶</button>
-    </article>
-    <article class="game-card">
-      <div class="emoji">✊</div><h3>Rock Paper Scissors</h3>
-      <p>कंप्यूटर को चुनौती दें।</p>
-      <button onclick="openGame('rps')">Play Now ▶</button>
-    </article>
-    <article class="game-card">
-      <div class="emoji">🧠</div><h3>Quick Quiz</h3>
-      <p>सवालों के जवाब देकर पॉइंट्स कमाएँ।</p>
-      <button onclick="openGame('quiz')">Play Now ▶</button>
-    </article>
-  </section>
-
+  <div class="tools">
+    <input id="search" type="search" placeholder="🔍 गेम खोजें..." aria-label="गेम खोजें">
+    <div class="tabs" id="tabs"></div>
+  </div>
+  <section class="game-grid" id="grid"></section>
   <section id="playArea">
-    <h2 id="gameTitle">🎮 आपका गेम</h2>
-
-    <div class="game-screen" id="snakeScreen">
-      <p class="hint">कुंजीपटल के Arrow बटन या नीचे के टच बटन इस्तेमाल करें।</p>
-      <p>स्कोर: <strong id="snakeScore">0</strong></p>
-      <canvas id="snakeCanvas" width="320" height="320"></canvas>
-      <p id="snakeMessage" class="hint" aria-live="polite">Start दबाकर खेलें।</p>
-      <div class="action-row">
-        <button onclick="startSnake()">▶ Start / Restart</button>
-        <button class="secondary" onclick="stopSnake()">⏸ Pause</button>
-      </div>
-      <div class="controls">
-        <button onclick="setDirection(0,-1)">⬆️</button>
-        <button onclick="setDirection(-1,0)">⬅️</button>
-        <button onclick="setDirection(0,1)">⬇️</button>
-        <button onclick="setDirection(1,0)">➡️</button>
-      </div>
-    </div>
-
-    <div class="game-screen" id="guessScreen">
-      <p class="hint">1 से 100 के बीच नंबर चुनें। आपके पास 10 कोशिशें हैं।</p>
-      <p>कोशिशें बाकी: <strong id="tries">10</strong></p>
-      <form id="guessForm">
-        <input id="guessInput" type="number" min="1" max="100"
-          placeholder="नंबर लिखें (1–100)" required>
-        <button type="submit">नंबर चेक करें</button>
-      </form>
-      <p id="guessFeedback" aria-live="polite">अपना पहला अनुमान लगाएँ!</p>
-      <button class="secondary" onclick="resetGuess()">🔄 नया गेम</button>
-    </div>
-
-    <div class="game-screen" id="rpsScreen">
-      <p class="hint">पत्थर, कागज़ या कैंची चुनें।</p>
-      <div class="action-row">
-        <button class="choice" onclick="playRPS('rock')" aria-label="पत्थर">✊</button>
-        <button class="choice" onclick="playRPS('paper')" aria-label="कागज़">✋</button>
-        <button class="choice" onclick="playRPS('scissors')" aria-label="कैंची">✌️</button>
-      </div>
-      <p id="rpsFeedback" aria-live="polite">अपनी चाल चुनें!</p>
-      <p>आपका स्कोर: <strong id="rpsScore">0</strong></p>
-    </div>
-
-    <div class="game-screen" id="quizScreen">
-      <p class="hint" id="quizProgress">सवाल 1</p>
-      <h3 id="quizQuestion"></h3>
-      <div id="quizOptions"></div>
-      <p id="quizFeedback" aria-live="polite"></p>
-      <button id="quizNext" onclick="nextQuestion()" style="display:none">अगला सवाल →</button>
-      <button id="quizRestart" class="secondary" onclick="startQuiz()">🔄 फिर खेलें</button>
-    </div>
-
-    <div class="action-row" style="margin-top:20px">
-      <button class="secondary" onclick="closeGame()">✖ गेम बंद करें</button>
-    </div>
+    <h2 id="gameTitle"></h2>
+    <div id="screen"></div>
+    <div class="row" style="margin-top:20px"><button class="secondary" id="closeBtn">✖ गेम बंद करें</button></div>
   </section>
 </main>
-
-<footer>
-  © <span id="year"></span> Neon Game Zone · Made for fun ❤️
-</footer>
+<footer>© <span id="year"></span> Neon Game Zone · Made for fun ❤️</footer>
 
 <script>
-const $ = id => document.getElementById(id);
-let gamesPlayed = 0;
-let totalPoints = 0;
-const played = new Set();
+const $=id=>document.getElementById(id);
+const rnd=n=>Math.floor(Math.random()*n);
+let games=0,points=0,cur=null;const played=new Set();
+let cleanup=[];
+/* helpers: timers/keys auto-clear when a game closes */
+function T(f,ms,loop){const i=loop?setInterval(f,ms):setTimeout(f,ms);cleanup.push(()=>loop?clearInterval(i):clearTimeout(i));return i}
+function K(f){document.addEventListener("keydown",f);cleanup.push(()=>document.removeEventListener("keydown",f))}
+function score(name,p){if(!played.has(name)){played.add(name);games++}points+=p;$("totalGames").textContent=games;$("totalScore").textContent=points}
 
-function updateStats(points = 0) {
-  totalPoints += points;
-  $("totalGames").textContent = gamesPlayed;
-  $("totalScore").textContent = totalPoints;
-}
-function finishGame(name, points) {
-  if (!played.has(name)) {
-    played.add(name);
-    gamesPlayed++;
-  }
-  updateStats(points);
-}
-function openGame(name) {
-  stopSnake();
-  $("playArea").style.display = "block";
-  document.querySelectorAll(".game-screen").forEach(s => s.classList.remove("active"));
-  $("playArea").scrollIntoView({behavior:"smooth", block:"start"});
-  const titles = {
-    snake:"🐍 Snake Game", guess:"🎯 Number Guess",
-    rps:"✊ Rock Paper Scissors", quiz:"🧠 Quick Quiz"
-  };
-  $("gameTitle").textContent = titles[name];
-  $(name + "Screen").classList.add("active");
-  if(name === "guess") resetGuess();
-  if(name === "quiz") startQuiz();
-  if(name === "snake") drawSnake();
-}
-function closeGame() {
-  stopSnake();
-  $("playArea").style.display = "none";
-}
-$("year").textContent = new Date().getFullYear();
+/* ===== GAME REGISTRY — नया गेम जोड़ने के लिए add(...) की एक लाइन + function ===== */
+const GAMES=[];
+function add(id,title,emoji,desc,cat,grad,fn){GAMES.push({id,title,emoji,desc,cat,grad,fn})}
 
-/* NUMBER GUESS */
-let secret, tries, guessOver;
-function resetGuess() {
-  secret = Math.floor(Math.random() * 100) + 1;
-  tries = 10; guessOver = false;
-  $("tries").textContent = tries;
-  $("guessInput").value = "";
-  $("guessInput").disabled = false;
-  $("guessFeedback").textContent = "अपना पहला अनुमान लगाएँ!";
-  $("guessForm").querySelector("button").disabled = false;
-}
-$("guessForm").addEventListener("submit", e => {
-  e.preventDefault();
-  if(guessOver) return;
-  const n = Number($("guessInput").value);
-  if(!Number.isInteger(n) || n < 1 || n > 100) {
-    $("guessFeedback").textContent = "1 से 100 के बीच पूरा नंबर लिखें।";
-    return;
-  }
-  tries--;
-  $("tries").textContent = tries;
-  if(n === secret) {
-    const points = tries * 10 + 10;
-    $("guessFeedback").textContent = "🎉 सही जवाब! नंबर " + secret + " था। +" + points + " पॉइंट्स";
-    finishGame("guess", points);
-    guessOver = true;
-  } else if(tries === 0) {
-    $("guessFeedback").textContent = "गेम खत्म! सही नंबर " + secret + " था।";
-    finishGame("guess", 0);
-    guessOver = true;
-  } else {
-    $("guessFeedback").textContent = n < secret ? "📈 थोड़ा बड़ा नंबर आज़माएँ!" : "📉 थोड़ा छोटा नंबर आज़माएँ!";
-    $("guessInput").value = "";
-  }
-  if(guessOver) {
-    $("guessInput").disabled = true;
-    $("guessForm").querySelector("button").disabled = true;
-  }
+/* 1 SNAKE */
+add("snake","Snake Game","🐍","खाना खाएँ और साँप को बड़ा बनाएँ।","Arcade","#0f9b6e,#0b3d5c",el=>{
+  el.innerHTML='<p class="hint">Arrow keys, बटन या कैनवास पर टैप करें।</p><p>स्कोर: <b id="ss">0</b></p><canvas id="cv" width="320" height="320"></canvas><p id="sm" class="hint" aria-live="polite">Start दबाएँ।</p><div class="row"><button id="go">▶ Start / Restart</button></div><div class="pad"><button data-d="0,-1">⬆️</button><button data-d="-1,0">⬅️</button><button data-d="0,1">⬇️</button><button data-d="1,0">➡️</button></div>';
+  const c=el.querySelector("#cv"),x=c.getContext("2d"),S=16,N=20;
+  let sn,fd,d={x:1,y:0},nd=d,sc=0,over=true,tm=null;
+  const food=()=>{do fd={x:rnd(N),y:rnd(N)};while(sn.some(p=>p.x==fd.x&&p.y==fd.y))};
+  const draw=()=>{x.fillStyle="#080d1c";x.fillRect(0,0,320,320);if(fd){x.fillStyle="#ff658b";x.beginPath();x.arc(fd.x*S+8,fd.y*S+8,6,0,7);x.fill()}
+    (sn||[]).forEach((p,i)=>{x.fillStyle=i?"#5ad9b3":"#61f5ff";x.fillRect(p.x*S+1,p.y*S+1,S-2,S-2)})};
+  const dir=(a,b)=>{if(over||(a==-d.x&&b==-d.y))return;nd={x:a,y:b}};
+  const step=()=>{d=nd;const h={x:sn[0].x+d.x,y:sn[0].y+d.y},eat=h.x==fd.x&&h.y==fd.y;
+    if(h.x<0||h.y<0||h.x>=N||h.y>=N||sn.slice(0,eat?undefined:-1).some(p=>p.x==h.x&&p.y==h.y)){
+      clearInterval(tm);over=true;el.querySelector("#sm").textContent="💥 गेम ओवर! स्कोर: "+sc;score("snake",sc);return}
+    sn.unshift(h);if(eat){sc+=10;el.querySelector("#ss").textContent=sc;food()}else sn.pop();draw()};
+  el.querySelector("#go").onclick=()=>{clearInterval(tm);sn=[{x:10,y:10},{x:9,y:10},{x:8,y:10}];d=nd={x:1,y:0};sc=0;over=false;
+    el.querySelector("#ss").textContent=0;el.querySelector("#sm").textContent="चलें!";food();draw();tm=setInterval(step,140);cleanup.push(()=>clearInterval(tm))};
+  el.querySelectorAll(".pad button").forEach(b=>b.onclick=()=>dir(...b.dataset.d.split(",").map(Number)));
+  K(e=>{const m={ArrowUp:[0,-1],ArrowDown:[0,1],ArrowLeft:[-1,0],ArrowRight:[1,0]}[e.key];if(m){e.preventDefault();dir(...m)}});
+  c.addEventListener("touchstart",e=>{const t=e.changedTouches[0],r=c.getBoundingClientRect(),a=(t.clientX-r.left)/r.width-.5,b=(t.clientY-r.top)/r.height-.5;
+    Math.abs(a)>Math.abs(b)?dir(a<0?-1:1,0):dir(0,b<0?-1:1)},{passive:true});
+  draw();
 });
 
-/* ROCK PAPER SCISSORS */
-let rpsScore = 0;
-function playRPS(choice) {
-  const choices = ["rock","paper","scissors"];
-  const emojis = {rock:"✊ पत्थर",paper:"✋ कागज़",scissors:"✌️ कैंची"};
-  const computer = choices[Math.floor(Math.random()*3)];
-  let message;
-  if(choice === computer) message = "🤝 बराबरी!";
-  else if((choice==="rock" && computer==="scissors") ||
-          (choice==="paper" && computer==="rock") ||
-          (choice==="scissors" && computer==="paper")) {
-    message = "🎉 आप जीत गए!"; rpsScore++; finishGame("rps", 10);
-  } else message = "😄 कंप्यूटर जीत गया!";
-  $("rpsFeedback").textContent =
-    "आप: " + emojis[choice] + " | कंप्यूटर: " + emojis[computer] + " — " + message;
-  $("rpsScore").textContent = rpsScore;
-}
-
-/* QUICK QUIZ */
-const questions = [
-  {q:"भारत की राजधानी क्या है?", a:["मुंबई","नई दिल्ली","लखनऊ","जयपुर"], correct:1},
-  {q:"एक सप्ताह में कितने दिन होते हैं?", a:["5","6","7","8"], correct:2},
-  {q:"सूर्य किस दिशा से उगता है?", a:["पश्चिम","उत्तर","दक्षिण","पूर्व"], correct:3},
-  {q:"पानी का रासायनिक सूत्र क्या है?", a:["CO₂","O₂","H₂O","NaCl"], correct:2},
-  {q:"2 + 8 × 2 का मान क्या है?", a:["20","18","16","12"], correct:1}
-];
-let qIndex = 0, qScore = 0, qAnswered = false;
-function startQuiz() {
-  qIndex = 0; qScore = 0; qAnswered = false;
-  $("quizFeedback").textContent = "";
-  $("quizNext").style.display = "none";
-  $("quizRestart").style.display = "none";
-  showQuestion();
-}
-function showQuestion() {
-  const q = questions[qIndex];
-  $("quizProgress").textContent = "सवाल " + (qIndex+1) + " / " + questions.length;
-  $("quizQuestion").textContent = q.q;
-  $("quizOptions").innerHTML = "";
-  $("quizFeedback").textContent = "";
-  $("quizNext").style.display = "none";
-  qAnswered = false;
-  q.a.forEach((answer, i) => {
-    const btn = document.createElement("button");
-    btn.className = "quiz-option";
-    btn.textContent = answer;
-    btn.onclick = () => answerQuestion(i);
-    $("quizOptions").appendChild(btn);
-  });
-}
-function answerQuestion(i) {
-  if(qAnswered) return;
-  qAnswered = true;
-  const correct = questions[qIndex].correct;
-  [...$("quizOptions").children].forEach((btn, index) => {
-    btn.disabled = true;
-    if(index === correct) btn.textContent += " ✓";
-  });
-  if(i === correct) {
-    qScore += 10;
-    $("quizFeedback").textContent = "🎉 बिल्कुल सही! +10 पॉइंट्स";
-  } else {
-    $("quizFeedback").textContent = "❌ सही जवाब: " + questions[qIndex].a[correct];
-  }
-  $("quizNext").textContent = qIndex === questions.length-1 ? "रिज़ल्ट देखें" : "अगला सवाल →";
-  $("quizNext").style.display = "inline-block";
-}
-function nextQuestion() {
-  if(!qAnswered) return;
-  if(qIndex < questions.length-1) {
-    qIndex++; showQuestion();
-  } else {
-    $("quizQuestion").textContent = "🎊 आपका स्कोर: " + qScore + " / " + (questions.length*10);
-    $("quizOptions").innerHTML = "";
-    $("quizFeedback").textContent = qScore >= 30 ? "शानदार खेल!" : "अच्छी कोशिश! फिर खेलें।";
-    $("quizNext").style.display = "none";
-    $("quizRestart").style.display = "inline-block";
-    finishGame("quiz", qScore);
-  }
-}
-
-/* SNAKE GAME */
-const canvas = $("snakeCanvas");
-const ctx = canvas.getContext("2d");
-const cell = 16, cells = 20;
-let snake, food, dir, nextDir, snakeScore = 0, snakeTimer = null, snakeOver = true;
-
-function placeFood() {
-  do {
-    food = {x:Math.floor(Math.random()*cells), y:Math.floor(Math.random()*cells)};
-  } while(snake.some(p => p.x===food.x && p.y===food.y));
-}
-function drawSnake() {
-  ctx.fillStyle = "#080d1c";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
-  ctx.strokeStyle = "#ffffff09";
-  for(let i=0;i<=cells;i++) {
-    ctx.beginPath(); ctx.moveTo(i*cell,0); ctx.lineTo(i*cell,canvas.height); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(0,i*cell); ctx.lineTo(canvas.width,i*cell); ctx.stroke();
-  }
-  if(food) {
-    ctx.fillStyle = "#ff658b";
-    ctx.beginPath();
-    ctx.arc(food.x*cell+cell/2, food.y*cell+cell/2, cell/2.7, 0, Math.PI*2);
-    ctx.fill();
-  }
-  if(snake) snake.forEach((p,i) => {
-    ctx.fillStyle = i===0 ? "#61f5ff" : "#5ad9b3";
-    ctx.fillRect(p.x*cell+1,p.y*cell+1,cell-2,cell-2);
-  });
-}
-function startSnake() {
-  stopSnake();
-  snake = [{x:10,y:10},{x:9,y:10},{x:8,y:10}];
-  dir = {x:1,y:0}; nextDir = {x:1,y:0};
-  snakeScore = 0; snakeOver = false;
-  $("snakeScore").textContent = "0";
-  $("snakeMessage").textContent = "चलें! खाना इकट्ठा करें।";
-  placeFood(); drawSnake();
-  snakeTimer = setInterval(moveSnake, 145);
-}
-function stopSnake() {
-  if(snakeTimer) clearInterval(snakeTimer);
-  snakeTimer = null;
-}
-function setDirection(x,y) {
-  if(snakeOver) return;
-  if(x === -dir.x && y === -dir.y) return;
-  nextDir = {x,y};
-}
-function moveSnake() {
-  dir = nextDir;
-  const head = {x:snake[0].x+dir.x, y:snake[0].y+dir.y};
-  const eating = head.x===food.x && head.y===food.y;
-  if(head.x<0 || head.y<0 || head.x>=cells || head.y>=cells ||
-     snake.slice(0, eating ? undefined : -1).some(p=>p.x===head.x && p.y===head.y)) {
-    stopSnake(); snakeOver = true;
-    $("snakeMessage").textContent = "💥 गेम ओवर! स्कोर: " + snakeScore + ". फिर खेलने के लिए Restart दबाएँ।";
-    finishGame("snake", snakeScore);
-    return;
-  }
-  snake.unshift(head);
-  if(eating) {
-    snakeScore += 10;
-    $("snakeScore").textContent = snakeScore;
-    $("snakeMessage").textContent = "🍎 बढ़िया! +10 पॉइंट्स";
-    placeFood();
-  } else snake.pop();
-  drawSnake();
-}
-document.addEventListener("keydown", e => {
-  const keys = {
-    ArrowUp:[0,-1], ArrowDown:[0,1],
-    ArrowLeft:[-1,0], ArrowRight:[1,0]
-  };
-  if(keys[e.key] && $("snakeScreen").classList.contains("active")) {
-    e.preventDefault();
-    setDirection(...keys[e.key]);
-  }
+/* 2 NUMBER GUESS */
+add("guess","Number Guess","🎯","10 कोशिशों में सही नंबर खोजें।","Brain","#7c3aed,#2563eb",el=>{
+  let sec,tr,done;
+  el.innerHTML='<p class="hint">1 से 100 के बीच नंबर चुनें।</p><p>कोशिशें बाकी: <b id="tr">10</b></p><input class="f" id="in" type="number" min="1" max="100" placeholder="नंबर लिखें (1–100)"><button id="ck">नंबर चेक करें</button><p class="fb" id="fb" aria-live="polite">पहला अनुमान लगाएँ!</p><button class="secondary" id="nw">🔄 नया गेम</button>';
+  const fb=m=>el.querySelector("#fb").textContent=m,inp=el.querySelector("#in");
+  const reset=()=>{sec=rnd(100)+1;tr=10;done=false;el.querySelector("#tr").textContent=10;inp.value="";inp.disabled=false;el.querySelector("#ck").disabled=false;fb("पहला अनुमान लगाएँ!")};
+  const check=()=>{if(done)return;const n=Number(inp.value);if(!Number.isInteger(n)||n<1||n>100)return fb("1 से 100 के बीच पूरा नंबर लिखें।");
+    tr--;el.querySelector("#tr").textContent=tr;
+    if(n==sec){const p=tr*10+10;fb("🎉 सही! नंबर "+sec+" था। +"+p+" पॉइंट्स");score("guess",p);done=true}
+    else if(!tr){fb("गेम खत्म! सही नंबर "+sec+" था।");score("guess",0);done=true}
+    else{fb(n<sec?"📈 बड़ा नंबर आज़माएँ!":"📉 छोटा नंबर आज़माएँ!");inp.value=""}
+    if(done){inp.disabled=true;el.querySelector("#ck").disabled=true}};
+  el.querySelector("#ck").onclick=check;inp.onkeydown=e=>e.key=="Enter"&&check();el.querySelector("#nw").onclick=reset;reset();
 });
-$("snakeCanvas").addEventListener("touchstart", e => {
-  if(snakeOver) return;
-  const t = e.changedTouches[0];
-  const rect = canvas.getBoundingClientRect();
-  const x = (t.clientX-rect.left)/rect.width;
-  const y = (t.clientY-rect.top)/rect.height;
-  if(Math.abs(x-.5)>Math.abs(y-.5)) setDirection(x<.5?-1:1,0);
-  else setDirection(0,y<.5?-1:1);
-}, {passive:true});
-drawSnake();
-</script>
-</body>
-  </html>
-        </html>
+
+/* 3 ROCK PAPER SCISSORS */
+add("rps","Rock Paper Scissors","✊","कंप्यूटर को चुनौती दें।","Classic","#f97316,#db2777",el=>{
+  let sc=0;const E={rock:"✊ पत्थर",paper:"✋ कागज़",scissors:"✌️ कैंची"},C=Object.keys(E);
+  el.innerHTML='<p class="hint">अपनी चाल चुनें।</p><div class="row"><button class="big" data-c="rock">✊</button><button class="big" data-c="paper">✋</button><button class="big" data-c="scissors">✌️</button></div><p class="fb" id="fb" aria-live="polite"></p><p>आपका स्कोर: <b id="sc">0</b></p>';
+  el.querySelectorAll("[data-c]").forEach(b=>b.onclick=()=>{const u=b.dataset.c,p=C[rnd(3)];let m="🤝 बराबरी!";
+    if(u!=p){if((u=="rock"&&p=="scissors")||(u=="paper"&&p=="rock")||(u=="scissors"&&p=="paper")){m="🎉 आप जीत गए!";sc++;score("rps",10)}else m="😄 कंप्यूटर जीता!"}
+    el.querySelector("#fb").textContent="आप: "+E[u]+" | कंप्यूटर: "+E[p]+" — "+m;el.querySelector("#sc").textContent=sc});
+});
+
+/* 4 QUIZ */
+add("quiz","Quick Quiz","🧠","सवालों के जवाब देकर पॉइंट्स कमाएँ।","Brain","#0ea5e9,#6366f1",el=>{
+  const Q=[["भारत की राजधानी क्या है?",["मुंबई","नई दिल्ली","लखनऊ","जयपुर"],1],["एक सप्ताह में कितने दिन होते हैं?",["5","6","7","8"],2],["सूर्य किस दिशा से उगता है?",["पश्चिम","उत्तर","दक्षिण","पूर्व"],3],["पानी का रासायनिक सूत्र क्या है?",["CO₂","O₂","H₂O","NaCl"],2],["2 + 8 × 2 का मान क्या है?",["20","18","16","12"],1]];
+  let i=0,s=0,ans=false;
+  const show=()=>{ans=false;const q=Q[i];el.innerHTML='<p class="hint">सवाल '+(i+1)+' / '+Q.length+'</p><h3>'+q[0]+'</h3><div id="o"></div><p class="fb" id="fb" aria-live="polite"></p><button id="nx" style="display:none"></button>';
+    q[1].forEach((a,k)=>{const b=document.createElement("button");b.className="opt";b.textContent=a;b.onclick=()=>pick(k,b);el.querySelector("#o").appendChild(b)})};
+  const pick=(k,b)=>{if(ans)return;ans=true;const c=Q[i][2];[...el.querySelector("#o").children].forEach((x,j)=>{x.disabled=true;if(j==c)x.textContent+=" ✓"});
+    el.querySelector("#fb").textContent=k==c?(s+=10,"🎉 सही! +10"):"❌ सही जवाब: "+Q[i][1][c];
+    const n=el.querySelector("#nx");n.style.display="inline-block";n.textContent=i==Q.length-1?"रिज़ल्ट देखें":"अगला सवाल →";
+    n.onclick=()=>{if(i<Q.length-1){i++;show()}else{score("quiz",s);el.innerHTML='<h3>🎊 स्कोर: '+s+' / '+Q.length*10+'</h3><p class="fb">'+(s>=30?"शानदार खेल!":"अच्छी कोशिश!")+'</p><button id="rs">🔄 फिर खेलें</button>';el.querySelector("#rs").onclick=()=>{i=0;s=0;show()}}}};
+  show();
+});
+
+/* 5 MEMORY MATCH */
+add("memory","Memory Match","🃏","जोड़ियाँ मिलाएँ, कम चाल में जीतें।","Brain","#ec4899,#8b5cf6",el=>{
+  const E=["🍎","🚀","🐱","⚽","🎸","🌈","🍕","🦄"];let first=null,lock=false,mv=0,ok=0;
+  const deck=[...E,...E].sort(()=>Math.random()-.5);
+  el.innerHTML='<p>चालें: <b id="mv">0</b></p><div class="board mem" id="b"></div><p class="fb" id="fb" aria-live="polite"></p><button class="secondary" id="rs">🔄 नया गेम</button>';
+  const b=el.querySelector("#b");
+  deck.forEach((e,i)=>{const c=document.createElement("button");c.textContent="❓";c.onclick=()=>{
+    if(lock||c.disabled)return;c.textContent=e;c.disabled=true;
+    if(!first){first={c,e};return}
+    mv++;el.querySelector("#mv").textContent=mv;
+    if(first.e==e){ok++;first=null;if(ok==8){const p=Math.max(10,100-mv*4);el.querySelector("#fb").textContent="🎉 जीत गए! +"+p+" पॉइंट्स";score("memory",p)}}
+    else{lock=true;const f=first;first=null;T(()=>{f.c.textContent="❓";f.c.disabled=false;c.textContent="❓";c.disabled=false;lock=false},700)}};b.appendChild(c)});
+  el.querySelector("#rs").onclick=()=>start("memory");
+});
+
+/* 6 TIC TAC TOE */
+add("ttt","Tic Tac Toe","❌","कंप्यूटर के खिलाफ X और O।","Classic","#14b8a6,#3b82f6",el=>{
+  let B=Array(9).fill(""),over=false;const L=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+  el.innerHTML='<p class="hint">आप X हैं।</p><div class="board t3" id="b"></div><p class="fb" id="fb" aria-live="polite"></p><button class="secondary" id="rs">🔄 नया गेम</button>';
+  const bs=[],win=p=>L.some(l=>l.every(i=>B[i]==p)),fb=m=>el.querySelector("#fb").textContent=m;
+  const find=p=>{for(const l of L){const v=l.map(i=>B[i]);if(v.filter(z=>z==p).length==2&&v.includes(""))return l[v.indexOf("")]}return -1};
+  const draw=()=>B.forEach((v,i)=>{bs[i].textContent=v;bs[i].disabled=!!v||over});
+  const end=()=>{if(win("X")){fb("🎉 आप जीत गए! +30");score("ttt",30);over=true}else if(win("O")){fb("😄 कंप्यूटर जीता!");score("ttt",0);over=true}else if(!B.includes("")){fb("🤝 बराबरी! +10");score("ttt",10);over=true}return over};
+  for(let i=0;i<9;i++){const b=document.createElement("button");b.onclick=()=>{if(over||B[i])return;B[i]="X";if(!end()){let m=find("O");if(m<0)m=find("X");if(m<0)m=B[4]?[0,2,6,8,1,3,5,7].find(k=>!B[k]):4;B[m]="O";end()}draw()};bs.push(b);el.querySelector("#b").appendChild(b)}
+  el.querySelector("#rs").onclick=()=>start("ttt");draw();
+});
+
+/* 7 WHACK A MOLE */
+add("mole","Whack-a-Mole","🔨","30 सेकंड में ज़्यादा से ज़्यादा चूहे पकड़ें।","Arcade","#a16207,#b45309",el=>{
+  let sc=0,t=30,run=false,cur=-1;
+  el.innerHTML='<p>⏱ <b id="t">30</b> सेकंड &nbsp; स्कोर: <b id="s">0</b></p><div class="board mole" id="b"></div><p class="fb" id="fb"></p><button id="go">▶ Start</button>';
+  const bs=[];for(let i=0;i<9;i++){const b=document.createElement("button");b.textContent="🕳️";b.onclick=()=>{if(run&&i==cur){sc++;el.querySelector("#s").textContent=sc;b.textContent="💥";cur=-1}};bs.push(b);el.querySelector("#b").appendChild(b)}
+  el.querySelector("#go").onclick=()=>{if(run)return;run=true;sc=0;t=30;el.querySelector("#s").textContent=0;el.querySelector("#fb").textContent="";
+    T(()=>{bs.forEach(b=>b.textContent="🕳️");cur=rnd(9);bs[cur].textContent="🐹"},650,true);
+    T(()=>{t--;el.querySelector("#t").textContent=t;if(!t){run=false;cleanup.forEach(f=>f());cleanup=[];bs.forEach(b=>b.textContent="🕳️");el.querySelector("#fb").textContent="समय खत्म! स्कोर: "+sc;score("mole",sc*5)}},1000,true)};
+});
+
+/* 8 REACTION TIME */
+add("react","Reaction Time","⚡","हरा होते ही क्लिक करें, अपनी स्पीड जाँचें।","Speed","#16a34a,#065f46",el=>{
+  let st="idle",t0=0,tm;
+  el.innerHTML='<p class="hint">लाल से हरा होते ही तुरंत क्लिक/टैप करें।</p><div id="reactBox" tabindex="0" role="button">शुरू करने के लिए क्लिक करें</div><p class="fb" id="fb" aria-live="polite"></p>';
+  const bx=el.querySelector("#reactBox");
+  const act=()=>{if(st=="idle"){st="wait";bx.style.background="#8b2f45";bx.textContent="रुकें...";tm=T(()=>{st="go";t0=performance.now();bx.style.background="#16a34a";bx.textContent="अभी क्लिक करें!"},1500+rnd(2500))}
+    else if(st=="wait"){clearTimeout(tm);st="idle";bx.textContent="बहुत जल्दी! फिर क्लिक करें";bx.style.background="#303755"}
+    else{const ms=Math.round(performance.now()-t0);st="idle";bx.style.background="#303755";bx.textContent="फिर खेलें";el.querySelector("#fb").textContent="⚡ "+ms+" ms";score("react",Math.max(0,Math.round((600-ms)/10)))}};
+  bx.onclick=act;bx.onkeydown=e=>(e.key=="Enter"||e.key==" ")&&act();
+});
+
+/* 9 MATH SPRINT */
+add("math","Math Sprint","➕","30 सेकंड में जितने हल कर सकें करें।","Speed","#e11d48,#7c3aed",el=>{
+  let sc=0,t=30,run=false,ans=0;
+  el.innerHTML='<p>⏱ <b id="t">30</b> &nbsp; स्कोर: <b id="s">0</b></p><h2 id="q">?</h2><input class="f" id="in" type="number" disabled placeholder="जवाब लिखें, Enter दबाएँ"><p class="fb" id="fb" aria-live="polite"></p><button id="go">▶ Start</button>';
+  const inp=el.querySelector("#in"),nq=()=>{const a=rnd(12)+2,b=rnd(12)+2,op=rnd(3);ans=op==0?a+b:op==1?a*b:a+b+a;
+    el.querySelector("#q").textContent=op==0?a+" + "+b:op==1?a+" × "+b:a+" + "+b+" + "+a;inp.value=""};
+  inp.onkeydown=e=>{if(e.key!="Enter"||!run)return;if(Number(inp.value)==ans){sc++;el.querySelector("#s").textContent=sc;el.querySelector("#fb").textContent="✓"}else el.querySelector("#fb").textContent="✗ "+ans;nq()};
+  el.querySelector("#go").onclick=()=>{if(run)return;run=true;sc=0;t=30;inp.disabled=false;inp.focus();el.querySelector("#s").textContent=0;nq();
+    T(()=>{t--;el.querySelector("#t").textContent=t;if(!t){run=false;inp.disabled=true;el.querySelector("#fb").textContent="समय खत्म! सही: "+sc;score("math",sc*10)}},1000,true)};
+});
+
+/* 10 TAP SPEED */
+add("tap","Tap Challenge","👆","10 सेकंड में कितनी बार टैप कर सकते हैं?","Speed","#facc15,#f97316",el=>{
+  let n=0,run=false,t=10;
+  el.innerHTML='<p>⏱ <b id="t">10</b> सेकंड &nbsp; टैप: <b id="n">0</b></p><button class="big" id="tp" style="width:100%;height:150px;font-size:26px">👆 यहाँ टैप करें</button><p class="fb" id="fb" aria-live="polite"></p>';
+  el.querySelector("#tp").onclick=()=>{if(!run){if(t<10&&t>0)return;run=true;n=0;t=10;
+    T(()=>{t--;el.querySelector("#t").textContent=t;if(!t){run=false;el.querySelector("#fb").textContent="समय खत्म! "+n+" टैप ("+(n/10)+"/सेकंड)";score("tap",n*2);t=10}},1000,true)}
+    n++;el.querySelector("#n").textContent=n};
+});
+
+/* ===== HUB UI ===== */
+const cats=["सभी",...new Set(GAMES.map(g=>g.cat))];let cat="सभी";
+function render(){const q=$("search").value.trim().toLowerCase();$("grid").innerHTML="";
+  GAMES.filter(g=>(cat=="सभी"||g.cat==cat)&&(g.title+g.desc).toLowerCase().includes(q)).forEach(g=>{
+    const a=document.createElement("article");a.className="game-card";
+    a.innerHTML='<div class="thumb" style="background:linear-gradient(135deg,'+g.grad+')"><i>'+g.cat+'</i>'+g.emoji+'</div><div class="body"><h3>'+g.title+'</
