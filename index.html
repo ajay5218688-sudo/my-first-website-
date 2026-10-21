@@ -1,0 +1,413 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090d20">
+  <title>Neon Game Zone | Play & Win</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      color: #ffffff;
+      background:
+        radial-gradient(ellipse at top, #20265b 0%, transparent 55%),
+        linear-gradient(135deg, #080b18, #15102c, #071827);
+    }
+
+    header {
+      padding: 22px 16px;
+      text-align: center;
+      border-bottom: 1px solid #ffffff20;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 900;
+      color: #64f8ff;
+      text-shadow: 0 0 18px #00d9ff70;
+    }
+
+    header p {
+      color: #b9c4e9;
+      margin-bottom: 0;
+    }
+
+    main {
+      width: min(920px, 92%);
+      margin: 35px auto;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-size: clamp(30px, 6vw, 48px);
+      margin-bottom: 10px;
+    }
+
+    .hero h1 span {
+      color: #a88bff;
+    }
+
+    .hero p {
+      color: #c2c9e6;
+      line-height: 1.7;
+    }
+
+    .game-card {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 28px 22px;
+      text-align: center;
+      background: #151a32dd;
+      border: 1px solid #7777ff60;
+      border-radius: 24px;
+      box-shadow: 0 15px 55px #0006;
+    }
+
+    .game-icon {
+      font-size: 48px;
+    }
+
+    .game-card h2 {
+      margin: 10px 0;
+    }
+
+    .instructions {
+      color: #bdc6e8;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .stats {
+      display: flex;
+      gap: 12px;
+      margin: 22px 0;
+    }
+
+    .stat {
+      flex: 1;
+      padding: 13px 6px;
+      border-radius: 14px;
+      background: #252b4a;
+    }
+
+    .stat small {
+      display: block;
+      color: #bfc9e9;
+      margin-bottom: 7px;
+    }
+
+    .stat strong {
+      font-size: 23px;
+      color: #6cf7ff;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      border-radius: 12px;
+      border: 1px solid #646d9f;
+      background: #0b1024;
+      color: white;
+      font-size: 20px;
+      text-align: center;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #6cf7ff;
+    }
+
+    button {
+      border: none;
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-top: 12px;
+      width: 100%;
+      background: linear-gradient(90deg, #6c5cff, #00d9ed);
+      color: #080d21;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.2s, filter 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+    }
+
+    button:focus-visible {
+      outline: 2px solid white;
+      outline-offset: 3px;
+    }
+
+    .secondary {
+      background: #303755;
+      color: white;
+    }
+
+    #message {
+      min-height: 55px;
+      margin: 18px 0 0;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    .game-card.won {
+      border-color: #55ffb0;
+      box-shadow: 0 0 35px #55ffb025;
+    }
+
+    .other-games {
+      margin-top: 38px;
+    }
+
+    .other-games h2 {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .game-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .game-tile {
+      text-align: center;
+      padding: 20px 8px;
+      background: #171d36;
+      border: 1px solid #ffffff15;
+      border-radius: 16px;
+    }
+
+    .game-tile div {
+      font-size: 32px;
+    }
+
+    .game-tile p {
+      font-size: 14px;
+      color: #d7dcf2;
+      margin-bottom: 0;
+    }
+
+    .coming {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 11px;
+      color: #a99cff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 12px;
+      margin-top: 35px;
+      border-top: 1px solid #ffffff18;
+      color: #aab4d7;
+      font-size: 13px;
+    }
+
+    @media (max-width: 480px) {
+      main {
+        margin-top: 25px;
+      }
+
+      .game-card {
+        padding: 22px 16px;
+      }
+
+      .game-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">⚡ NEON GAME ZONE</div>
+    <p>Play Smart. Have Fun!</p>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Welcome to <span>Game Zone</span> 🎮</h1>
+      <p>
+        अपनी समझ आज़माएँ, सही नंबर खोजें और अपना हाई स्कोर बनाएँ!
+        <br>कोई डाउनलोड नहीं — सीधे ब्राउज़र में खेलें।
+      </p>
+    </section>
+
+    <section class="game-card" id="gameCard">
+      <div class="game-icon">🎯</div>
+      <h2>Number Guess Challenge</h2>
+      <p class="instructions">
+        मैंने 1 से 100 के बीच एक नंबर चुना है।
+        10 कोशिशों के अंदर सही नंबर खोजिए!
+      </p>
+
+      <div class="stats">
+        <div class="stat">
+          <small>कोशिशें बाकी</small>
+          <strong id="attempts">10</strong>
+        </div>
+        <div class="stat">
+          <small>कुल स्कोर</small>
+          <strong id="score">0</strong>
+        </div>
+      </div>
+
+      <form id="guessForm">
+        <label for="guess" class="instructions">
+          अपना नंबर चुनें (1–100)
+        </label>
+        <input
+          id="guess"
+          type="number"
+          min="1"
+          max="100"
+          placeholder="जैसे 42"
+          required
+        >
+        <button type="submit">🚀 नंबर चेक करें</button>
+      </form>
+
+      <p id="message" role="status" aria-live="polite">
+        तैयार हैं? अपना पहला अनुमान लगाएँ!
+      </p>
+
+      <button class="secondary" id="restart" type="button">
+        🔄 नया गेम शुरू करें
+      </button>
+    </section>
+
+    <section class="other-games">
+      <h2>🔥 गेम कलेक्शन</h2>
+      <div class="game-list">
+        <div class="game-tile">
+          <div>🧠</div>
+          <strong>Brain Quiz</strong>
+          <p>दिमागी सवाल</p>
+          <span class="coming">जल्द आ रहा है</span>
+        </div>
+        <div class="game-tile">
+          <div>🐍</div>
+          <strong>Snake Game</strong>
+          <p>क्लासिक आर्केड</p>
+          <span class="coming">जल्द आ रहा है</span>
+        </div>
+        <div class="game-tile">
+          <div>✊</div>
+          <strong>Rock Paper Scissors</strong>
+          <p>कंप्यूटर को हराएँ</p>
+          <span class="coming">जल्द आ रहा है</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Neon Game Zone · Made for fun ❤️
+  </footer>
+
+  <script>
+    const form = document.getElementById("guessForm");
+    const input = document.getElementById("guess");
+    const message = document.getElementById("message");
+    const attemptsDisplay = document.getElementById("attempts");
+    const scoreDisplay = document.getElementById("score");
+    const restartButton = document.getElementById("restart");
+    const gameCard = document.getElementById("gameCard");
+
+    let secretNumber;
+    let attempts;
+    let score;
+    let gameOver;
+
+    function startGame() {
+      secretNumber = Math.floor(Math.random() * 100) + 1;
+      attempts = 10;
+      score = 0;
+      gameOver = false;
+
+      attemptsDisplay.textContent = attempts;
+      scoreDisplay.textContent = score;
+      message.textContent = "तैयार हैं? अपना पहला अनुमान लगाएँ!";
+      input.value = "";
+      input.disabled = false;
+      form.querySelector("button").disabled = false;
+      form.querySelector("button").style.opacity = "1";
+      gameCard.classList.remove("won");
+      input.focus();
+    }
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      if (gameOver) return;
+
+      const guess = Number(input.value);
+
+      if (!Number.isInteger(guess) || guess < 1 || guess > 100) {
+        message.textContent = "कृपया 1 से 100 के बीच पूरा नंबर डालें।";
+        return;
+      }
+
+      attempts--;
+      attemptsDisplay.textContent = attempts;
+
+      if (guess === secretNumber) {
+        score = attempts * 10 + 10;
+        scoreDisplay.textContent = score;
+        message.textContent =
+          "🎉 शानदार! सही नंबर " + secretNumber +
+          " था। आपने " + (10 - attempts) + " कोशिशों में जीत लिया!";
+        gameOver = true;
+        gameCard.classList.add("won");
+        input.disabled = true;
+        form.querySelector("button").disabled = true;
+        form.querySelector("button").style.opacity = "0.5";
+      } else if (attempts === 0) {
+        message.textContent =
+          "😅 गेम खत्म! सही नंबर " + secretNumber +
+          " था। नया गेम खेलकर फिर कोशिश करें।";
+        gameOver = true;
+        input.disabled = true;
+        form.querySelector("button").disabled = true;
+        form.querySelector("button").style.opacity = "0.5";
+      } else if (guess < secretNumber) {
+        message.textContent =
+          "📈 आपका नंबर छोटा है! इससे बड़ा नंबर आज़माएँ।";
+      } else {
+        message.textContent =
+          "📉 आपका नंबर बड़ा है! इससे छोटा नंबर आज़माएँ।";
+      }
+
+      if (!gameOver) {
+        input.value = "";
+        input.focus();
+      }
+    });
+
+    restartButton.addEventListener("click", startGame);
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    startGame();
+  </script>
+
+</body>
+          </html>
+          
